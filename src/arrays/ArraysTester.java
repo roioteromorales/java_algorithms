@@ -5,20 +5,46 @@ public class ArraysTester {
     public static final int MIN = 0;
     public static final int MAX = 100;
 
-    public static void main(String[] args) {
-        // sample data
-        int[] data = new int[SIZE];
+    public static int[] dataUnsorted = new int[SIZE];
+    public static int[] dataSorted = new int[SIZE];
 
-        for (int i = 0; i < data.length; i++) {
-            data[i] = (int)(Math.random() * MAX + MIN);
+    public static void main(String[] args) {
+        // sample unsorted integer data
+        for (int i = 0; i < dataUnsorted.length; i++) {
+            dataUnsorted[i] = (int)(Math.random() * MAX + MIN);
+        }
+
+        //sample sorted integer data
+        for (int i = 0; i < dataSorted.length; i++) {
+            dataSorted[i] = i;
         }
 
         // test linear search
-        int target = 50;
-        System.out.println("Target " + target + " " + Search.linearSearch(data, target));
+        testLinearSearch();
 
-        target = 1000;
-        System.out.println("Target " + target + " " + Search.linearSearch(data, target));
+        // test binary search
+        testBinarySearch();
+
+    }
+
+    public static void testLinearSearch() {
+        System.out.println("\nLINEAR SEARCH");
+
+        int target = 50;
+        System.out.println("Target " + target + " " + Search.linearSearch(dataUnsorted, target));
+
+        target = 1500;
+        System.out.println("Target " + target + " " + Search.linearSearch(dataUnsorted, target));
+    }
+
+    public static void testBinarySearch() {
+        System.out.println("\nBINARY SEARCH");
+
+        int target = 50;
+        System.out.println("Target " + target + " " + Search.binarySearch(dataSorted, target));
+
+        target = 1500;
+        System.out.println("Target " + target + " " + Search.binarySearch(dataSorted, target));
 
     }
 }
