@@ -1,6 +1,6 @@
 package arrays;
 
-public class ArraysTester {
+public class ArrayTester {
     public static final int SIZE = 1000;
     public static final int MIN = 0;
     public static final int MAX = 100;
