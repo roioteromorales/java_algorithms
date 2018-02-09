@@ -1,7 +1,7 @@
 package arrays;
 
 public class ArrayTester {
-    public static final int SIZE = 1000;
+    public static final int SIZE = 100;
     public static final int MIN = 0;
     public static final int MAX = 100;
 
@@ -20,10 +20,13 @@ public class ArrayTester {
         }
 
         // test linear search
-        testLinearSearch();
+        //testLinearSearch();
 
         // test binary search
-        testBinarySearch();
+        //testBinarySearch();
+
+        // test bubble sort
+        testBubbleSort();
 
     }
 
@@ -45,6 +48,28 @@ public class ArrayTester {
 
         target = 1500;
         System.out.println("Target " + target + " " + Search.binarySearch(dataSorted, target));
-
     }
+
+    public static void testBubbleSort() {
+        System.out.println("\nBUBBLE SORT");
+
+        System.out.println("\nOriginal: ");
+        for (int i = 0; i < dataUnsorted.length; i++) {
+            System.out.print(String.format("%02d", dataUnsorted[i]) + " ");
+            if (i > 0 && (i + 1) % 30 == 0) {
+                System.out.println();
+            }
+        }
+
+        System.out.println("\n\nBubble Sorted: ");
+        int[] sorted = Sort.bubbleSort(dataUnsorted);
+
+        for (int i = 0; i < sorted.length; i++) {
+            System.out.print(String.format("%02d", sorted[i]) + " ");
+            if (i > 0 && (i + 1) % 30 == 0) {
+                System.out.println();
+            }
+        }
+    }
+
 }
