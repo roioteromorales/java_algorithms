@@ -21,80 +21,32 @@ public class ArrayTester {
             dataSorted[i] = i;
         }
 
-        // test linear search
-        //testLinearSearch();
-
-        // test binary search
-        testBinarySearch();
-
-        // test bubble sort
-        //testBubbleSort();
-
-        // test insertion sort
-        //testInsertionSort();
-
-    }
-
-    public static void testLinearSearch() {
-        System.out.println("\nLINEAR SEARCH");
-
+        // test search
         int target = 50;
-        System.out.println("Target " + target + " " + Search.linearSearch(dataUnsorted, target));
+        System.out.println("LinearSearch: " + target + " " + Search.linearSearch(dataSorted, target));
+        System.out.println("BinarySearch: " + target + " " + Search.binarySearch(dataSorted, target));
+        System.out.println("BinaryNonRecursiveSearch: " + target + " " + Search.binaryNonRecursiveSearch(dataSorted, target));
 
         target = 1500;
-        System.out.println("Target " + target + " " + Search.linearSearch(dataUnsorted, target));
-    }
+        System.out.println("LinearSearch: " + target + " " + Search.linearSearch(dataSorted, target));
+        System.out.println("BinarySearch: " + target + " " + Search.binarySearch(dataSorted, target));
+        System.out.println("BinaryNonRecursiveSearch: " + target + " " + Search.binaryNonRecursiveSearch(dataSorted, target));
 
-    public static void testBinarySearch() {
-        System.out.println("\nBINARY SEARCH");
 
-        int target = 50;
-        System.out.println("Target " + target + " " + Search.binarySearch(dataSorted, target));
-        System.out.println("Target " + target + " " + Search.binaryNonRecursiveSearch(dataSorted, target));
-
-        target = 1500;
-        System.out.println("Target " + target + " " + Search.binarySearch(dataSorted, target));
-        System.out.println("Target " + target + " " + Search.binaryNonRecursiveSearch(dataSorted, target));
-    }
-
-    public static void testBubbleSort() {
-        System.out.println("\nBUBBLE SORT");
+        // test selection sort
+        System.out.println("\nSELECTION SORT");
 
         System.out.println("\nOriginal: ");
-        for (int i = 0; i < dataUnsorted.length; i++) {
-            System.out.print(String.format("%02d", dataUnsorted[i]) + " ");
-            if (i > 0 && (i + 1) % 30 == 0) {
-                System.out.println();
-            }
-        }
+        printArray(dataUnsorted);
 
-        System.out.println("\n\nBubble Sorted: ");
-        int[] sorted = Sort.bubbleSort(dataUnsorted);
+        System.out.println("\n\nSelection Sorted: ");
+        printArray(Sort.selectionSort(dataUnsorted));
 
-        for (int i = 0; i < sorted.length; i++) {
-            System.out.print(String.format("%02d", sorted[i]) + " ");
-            if (i > 0 && (i + 1) % 30 == 0) {
-                System.out.println();
-            }
-        }
     }
 
-    public static void testInsertionSort() {
-        System.out.println("\nINSERTION SORT");
-
-        System.out.println("\nOriginal: ");
-        for (int i = 0; i < dataUnsorted.length; i++) {
-            System.out.print(String.format("%02d", dataUnsorted[i]) + " ");
-            if (i > 0 && (i + 1) % 30 == 0) {
-                System.out.println();
-            }
-        }
-
-        System.out.println("\n\nInsertion Sorted: ");
-        int[] sorted = Sort.insertionSort(dataUnsorted);
-
-        for (int i = 0; i < sorted.length; i++) {
-            System.out.print(String.format("%02d", sorted[i]) + " ");
+    public static void printArray(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(String.format("%02d", array[i]) + " ");
             if (i > 0 && (i + 1) % 30 == 0) {
                 System.out.println();
             }
