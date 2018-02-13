@@ -26,7 +26,10 @@ public class ArrayTester {
         //testBinarySearch();
 
         // test bubble sort
-        testBubbleSort();
+        //testBubbleSort();
+
+        // test insertion sort
+        testInsertionSort();
 
     }
 
@@ -63,6 +66,28 @@ public class ArrayTester {
 
         System.out.println("\n\nBubble Sorted: ");
         int[] sorted = Sort.bubbleSort(dataUnsorted);
+
+        for (int i = 0; i < sorted.length; i++) {
+            System.out.print(String.format("%02d", sorted[i]) + " ");
+            if (i > 0 && (i + 1) % 30 == 0) {
+                System.out.println();
+            }
+        }
+    }
+
+    public static void testInsertionSort() {
+        System.out.println("\nINSERTION SORT");
+
+        System.out.println("\nOriginal: ");
+        for (int i = 0; i < dataUnsorted.length; i++) {
+            System.out.print(String.format("%02d", dataUnsorted[i]) + " ");
+            if (i > 0 && (i + 1) % 30 == 0) {
+                System.out.println();
+            }
+        }
+
+        System.out.println("\n\nBubble Sorted: ");
+        int[] sorted = Sort.insertionSort(dataUnsorted);
 
         for (int i = 0; i < sorted.length; i++) {
             System.out.print(String.format("%02d", sorted[i]) + " ");

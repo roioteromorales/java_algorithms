@@ -3,7 +3,7 @@ package arrays;
 public class Sort {
 
     /* BUBBLE SORT
-     *
+     * only supports integer arrays
      */
     public static int[] bubbleSort(int[] array) {
         boolean sorted;
@@ -29,6 +29,29 @@ public class Sort {
                 }
             }
         } while (!sorted);
+
+        return array;
+    }
+
+    /* INSERTION SORT
+     * only supports integer arrays
+     */
+    public static int[] insertionSort(int[] array) {
+
+        // iterate through original array
+        for (int i = 1; i < array.length; i++) {
+            int num = array[i];
+            int j = i - 1;
+
+            // push back to make room for num
+            while (j >= 0 && array[j] > num) {
+                array[j + 1] = array[j];
+                j--;
+            }
+
+            // insert num
+            array[j + 1] = num;
+        }
 
         return array;
     }

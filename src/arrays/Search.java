@@ -37,5 +37,4 @@ public class Search {
             return binarySearch(array, target, mid + 1, right);
         }
     }
-
 }
