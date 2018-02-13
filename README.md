@@ -6,13 +6,13 @@ This repository is for practicing algorithms and working with data structures in
 
 ### Search.java
 This includes integer array implementations of:
- ..* **linear search**
- ..* **binary search**
+- **linear search**
+- **binary search**
 
 ### Sort.java
 This includes integer array implementations of:
-..* **bubble sort**
-..* **insertion sort**
+- **bubble sort**
+- **insertion sort**
 
 
 You can test by running *ArrayTester.java*.
