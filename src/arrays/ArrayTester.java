@@ -1,5 +1,7 @@
 package arrays;
 
+import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
+
 public class ArrayTester {
     public static final int SIZE = 100;
     public static final int MIN = 0;
@@ -23,13 +25,13 @@ public class ArrayTester {
         //testLinearSearch();
 
         // test binary search
-        //testBinarySearch();
+        testBinarySearch();
 
         // test bubble sort
         //testBubbleSort();
 
         // test insertion sort
-        testInsertionSort();
+        //testInsertionSort();
 
     }
 
@@ -48,9 +50,11 @@ public class ArrayTester {
 
         int target = 50;
         System.out.println("Target " + target + " " + Search.binarySearch(dataSorted, target));
+        System.out.println("Target " + target + " " + Search.binaryNonRecursiveSearch(dataSorted, target));
 
         target = 1500;
         System.out.println("Target " + target + " " + Search.binarySearch(dataSorted, target));
+        System.out.println("Target " + target + " " + Search.binaryNonRecursiveSearch(dataSorted, target));
     }
 
     public static void testBubbleSort() {
@@ -86,7 +90,7 @@ public class ArrayTester {
             }
         }
 
-        System.out.println("\n\nBubble Sorted: ");
+        System.out.println("\n\nInsertion Sorted: ");
         int[] sorted = Sort.insertionSort(dataUnsorted);
 
         for (int i = 0; i < sorted.length; i++) {
