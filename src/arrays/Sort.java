@@ -6,32 +6,30 @@ public class Sort {
      * only supports integer arrays
      */
     public static int[] bubbleSort(int[] array) {
-        boolean sorted;
 
-        if(array.length < 2) {
+        if (array.length < 2) {
             return array;
         }
 
-        // do at least once or until sorted
-        do {
-            sorted = true;
-            // iterate through array
-            for (int i = 1; i < array.length; i++) {
-                // check if a pair is in the correct order
-                if (array[i] >= array[i - 1]) {
-                    continue;
-                } else {
-                    // swap if they are not
-                    int temp = array[i];
-                    array[i] = array[i - 1];
-                    array[i - 1] = temp;
-                    sorted = false;
+        // iterate through array
+        for (int i = 0; i < array.length; i++)
+            // iterate through unsorted array
+            for (int j = 0; j < array.length - i - 1; j++) {
+                // check if a pair is in the incorrect order
+                if (array[j] > array[j + 1]) {
+                    // swap
+                    int temp = array[j + 1];
+                    array[j + 1] = array[j];
+                    array[j] = temp;
                 }
             }
-        } while (!sorted);
 
         return array;
     }
+
+
+
+
 
     /* INSERTION SORT
      * only supports integer arrays
