@@ -2,8 +2,8 @@ package arrays;
 
 public class Sort {
 
-    /* BUBBLE SORT
-     *
+    /*
+     BUBBLE SORT
      */
     public static int[] bubbleSort(int[] array) {
 
@@ -27,8 +27,8 @@ public class Sort {
         return array;
     }
 
-    /* INSERTION SORT
-     *
+    /*
+     INSERTION SORT
      */
     public static int[] insertionSort(int[] array) {
 
@@ -50,8 +50,8 @@ public class Sort {
         return array;
     }
 
-    /* SELECTION SORT
-     *
+    /*
+     SELECTION SORT
      */
     public static int[] selectionSort(int[] array) {
         int sorted = 0;
@@ -76,18 +76,20 @@ public class Sort {
         return array;
     }
 
-    /* MERGE SORT
-     *
+    /*
+     MERGE SORT
      */
     public static int[] mergeSort(int[] array) {
 
         if (array.length > 1) {
 
+            int leftSize = (int)Math.floor(array.length / 2.0);
+            int rightSize = (int)Math.ceil(array.length / 2.0);
             // create sub arrays
-            int[] left = new int[array.length / 2];
-            int[] right = new int[array.length / 2];
-            System.arraycopy(array, 0, left, 0, array.length / 2);
-            System.arraycopy(array, (array.length) / 2, right, 0, array.length / 2);
+            int[] left = new int[leftSize];
+            int[] right = new int[rightSize];
+            System.arraycopy(array, 0, left, 0, leftSize);
+            System.arraycopy(array, leftSize, right, 0, rightSize);
 
             // recursively sort left
             left = mergeSort(left);

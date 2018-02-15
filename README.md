@@ -15,6 +15,8 @@ This includes integer array implementations of:
 - **bubble sort**
 - **insertion sort**
 - **selection sort**
+- **merge sort**
+- **quick sort**
 
 
 You can test by running *ArrayTester.java*.
