@@ -3,7 +3,7 @@ package arrays;
 public class Sort {
 
     /* BUBBLE SORT
-     * only supports integer arrays
+     *
      */
     public static int[] bubbleSort(int[] array) {
 
@@ -27,12 +27,8 @@ public class Sort {
         return array;
     }
 
-
-
-
-
     /* INSERTION SORT
-     * only supports integer arrays
+     *
      */
     public static int[] insertionSort(int[] array) {
 
@@ -55,7 +51,7 @@ public class Sort {
     }
 
     /* SELECTION SORT
-     * only supports integer arrays
+     *
      */
     public static int[] selectionSort(int[] array) {
         int sorted = 0;
@@ -75,6 +71,52 @@ public class Sort {
             array[min] = temp;
 
             sorted ++;
+        }
+
+        return array;
+    }
+
+    /* MERGE SORT
+     *
+     */
+    public static int[] mergeSort(int[] array) {
+
+        if (array.length > 1) {
+
+            // create sub arrays
+            int[] left = new int[array.length / 2];
+            int[] right = new int[array.length / 2];
+            System.arraycopy(array, 0, left, 0, array.length / 2);
+            System.arraycopy(array, (array.length) / 2, right, 0, array.length / 2);
+
+            // recursively sort left
+            left = mergeSort(left);
+
+            // recursively sort right
+            right = mergeSort(right);
+
+            // merge
+            int i = 0, j = 0;
+
+            while (i < left.length && j < right.length) {
+                if (left[i] < right[j]) {
+                    array[i + j] = left[i];
+                    i++;
+                } else {
+                    array[i + j] = right[j];
+                    j++;
+                }
+            }
+
+            while (i < left.length) {
+                array[i + j] = left[i];
+                i++;
+            }
+
+            while (j < right.length) {
+                array[i + j] = right[j];
+                j++;
+            }
         }
 
         return array;

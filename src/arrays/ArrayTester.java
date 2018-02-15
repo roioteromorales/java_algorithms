@@ -3,7 +3,7 @@ package arrays;
 import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
 
 public class ArrayTester {
-    public static final int SIZE = 20;
+    public static final int SIZE = 10;
     public static final int MIN = 0;
     public static final int MAX = 100;
 
@@ -22,7 +22,7 @@ public class ArrayTester {
         }
 
         // test search
-        int target = 15;
+        int target = 5;
         System.out.println("LinearSearch: " + target + " " + Search.linearSearch(dataSorted, target));
         System.out.println("BinarySearch: " + target + " " + Search.binarySearch(dataSorted, target));
         System.out.println("BinaryNonRecursiveSearch: " + target + " " + Search.binaryNonRecursiveSearch(dataSorted, target));
@@ -42,7 +42,8 @@ public class ArrayTester {
         printArray(dataUnsorted);
 
         System.out.println("\n\nSorted: ");
-        printArray(Sort.bubbleSort(dataUnsorted));
+        Sort.mergeSort(dataUnsorted);
+        printArray(dataUnsorted);
 
     }
 
