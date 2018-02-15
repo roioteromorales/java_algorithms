@@ -83,8 +83,10 @@ public class Sort {
 
         if (array.length > 1) {
 
+            // get array sizes
             int leftSize = (int)Math.floor(array.length / 2.0);
             int rightSize = (int)Math.ceil(array.length / 2.0);
+
             // create sub arrays
             int[] left = new int[leftSize];
             int[] right = new int[rightSize];

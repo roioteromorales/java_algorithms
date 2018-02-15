@@ -21,6 +21,13 @@ This includes integer array implementations of:
 
 You can test by running *ArrayTester.java*.
 
+## Linked Lists
+
+### SingleLinkedList.java
+This is an implementation of single linked lists for Strings.
+
+You can test by running *LinkedListTester.java*.
+
 ## Cryptography
 
 ### CaesarCipher.java
