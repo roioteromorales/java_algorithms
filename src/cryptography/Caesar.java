@@ -1,23 +1,8 @@
 package cryptography;
 
-public class CaesarCipher {
-
-    public static void main(String[] args) {
-        // test cipher
-        String plaintext = "hello, world";
-        int key = 13;
+public class Caesar {
 
 
-        System.out.println("Original: " + plaintext);
-
-        System.out.println("\n...encrypting");
-        String ciphertext = crypt(plaintext, key);
-        System.out.println("Ciphertext: " + ciphertext);
-
-        System.out.println("\n...decrypting");
-        System.out.println("Plaintext: " + crypt(ciphertext, -key));
-
-    }
 
     /* CAESAR CIPHER CRYPT
      * encrypts/decrypts the given text by the given key (negative for decryption)
@@ -40,4 +25,5 @@ public class CaesarCipher {
 
         return output;
     }
+
 }
