@@ -1,9 +1,9 @@
 package linked_list;
 
-public class SingleLinkedList {
+public class DoubleLinkedList {
     private Node start;
 
-    public SingleLinkedList(String ... data) {
+    public DoubleLinkedList(String ... data) {
         if (data.length < 1) {
             start = null;
         } else {
@@ -13,69 +13,79 @@ public class SingleLinkedList {
         }
     }
 
-    // Adds the given data to the end of the list
+
+    // Adds value to end of the list
     public void add(String data) {
         insert(data, size());
     }
 
-    // Inserts the given data at the given index
+    // Inserts value at the given index
     public void insert(String data, int index) {
         if (start == null) {
             start = new Node(data);
         } else {
-
             Node iterator = start;
             Node previous = null;
 
             if (index == 0) {
-                start = new Node(data, start);
+                start = new Node(data, start,null);
             }
             else if (index < size()) {
-                // iterate through list to find index
-
+                // iterator through list to find index
                 int count = 0;
-
                 while (count != index) {
+
                     previous = iterator;
                     iterator = iterator.next;
                     count++;
                 }
 
-                previous.next = new Node(data, iterator);
+                previous.next = new Node(data, iterator, previous);
+                iterator.prev = previous.next;
 
             }
             else {
-                // iterator through list to find last node
+                // iterate through list to end
                 while (iterator.next != null) {
+                    previous = iterator;
                     iterator = iterator.next;
                 }
+
                 iterator.next = new Node(data);
+                iterator.prev = previous;
             }
         }
     }
 
-    // Removes the node at the given index
-    public void remove(int index) { // SHOULD THIS THROW EXCEPTION??
-        try {
-            int count = 0;
-            Node previous = null;
-            Node iterator = start;
+    public void remove(int index) {
+        Node iterator = start;
+        Node previous = null;
 
-            // iterate until index is reached
-            while (count != index) {
-                previous = iterator;
-                iterator = iterator.next;
-                count++;
+        if (index == 0) {
+            start = start.next;
+        }
+        else {
+            try {
+                // iterator through list to find index
+                int count = 0;
+                while (count != index) {
+
+                    previous = iterator;
+                    iterator = iterator.next;
+                    count++;
+                }
+
+                previous.next = iterator.next;
+                iterator.next.prev = previous;
+
+            } catch (NullPointerException ex) {
+                System.out.println("invalid index");
             }
 
-            // link previous node to the node after the current
-            previous.next = iterator.next;
-        } catch (NullPointerException ex) {
-            System.out.println("invalid index");
         }
+
     }
 
-    // Returns the value at the given index
     public String get(int index) {
         try {
             int count = 0;
@@ -93,7 +103,6 @@ public class SingleLinkedList {
         }
     }
 
-    // Sets the value of the given index to the given data
     public void set(int index, String data) {
         try {
             int count = 0;
@@ -113,7 +122,6 @@ public class SingleLinkedList {
         }
     }
 
-    // Returns the size of the list
     public int size() {
         int count = 0;
         Node iterator = start;
@@ -127,7 +135,6 @@ public class SingleLinkedList {
         return count;
     }
 
-    // Converts list values into String
     public String toString() {
         Node iterator = start;
         String output = "";
@@ -144,10 +151,12 @@ public class SingleLinkedList {
     private class Node {
         String data;
         Node next;
+        Node prev;
 
         public Node() {
             this.data = null;
             this.next = null;
+            this.prev = null;
         }
 
         public Node(String data) {
@@ -155,12 +164,10 @@ public class SingleLinkedList {
             this.next = null;
         }
 
-        public Node(String data, Node node) {
+        public Node(String data, Node next, Node prev) {
             this.data = data;
-            this.next = node;
+            this.next = next;
+            this.prev = prev;
         }
     }
-
 }
-
-
