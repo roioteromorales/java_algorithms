@@ -154,16 +154,9 @@ public class DoubleLinkedList<T> {
         Node next;
         Node prev;
 
-
         public Node(T data) {
             this.data = data;
             this.next = null;
-            this.prev = null;
-        }
-
-        public Node(T data, Node node) {
-            this.data = data;
-            this.next = node;
             this.prev = null;
         }
 

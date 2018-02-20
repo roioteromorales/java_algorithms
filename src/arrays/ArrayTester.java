@@ -1,19 +1,21 @@
 package arrays;
 
-import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
-
 public class ArrayTester {
     public static final int SIZE = 10;
     public static final int MIN = 0;
     public static final int MAX = 100;
 
-    public static int[] dataUnsorted = new int[SIZE];
-    public static int[] dataSorted = new int[SIZE];
+    public static Number[] dataUnsorted = new Number[SIZE];
+    public static Number[] dataSorted = new Number[SIZE];
 
     public static void main(String[] args) {
         // sample unsorted integer data
         for (int i = 0; i < dataUnsorted.length; i++) {
-            dataUnsorted[i] = (int)(Math.random() * MAX + MIN);
+            if (i % 2 == 0) {
+                dataUnsorted[i] = Math.random() * MAX + MIN;
+            } else {
+                dataUnsorted[i] = (int)(Math.random() * MAX + MIN);
+            }
         }
 
         //sample sorted integer data
@@ -46,9 +48,9 @@ public class ArrayTester {
 
     }
 
-    public static void printArray(int[] array) {
+    public static <N extends Number> void printArray( N[] array) {
         for (int i = 0; i < array.length; i++) {
-            System.out.print(String.format("%02d", array[i]) + " ");
+            System.out.print(array[i] + " ");
             if (i > 0 && (i + 1) % 30 == 0) {
                 System.out.println();
             }
