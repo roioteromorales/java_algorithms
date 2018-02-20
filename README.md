@@ -16,7 +16,6 @@ This includes integer array implementations of:
 - **insertion sort**
 - **selection sort**
 - **merge sort**
-- **quick sort**
 
 
 You can test by running *ArrayTester.java*.
@@ -24,14 +23,22 @@ You can test by running *ArrayTester.java*.
 ## Linked Lists
 
 ### SingleLinkedList.java
-This is an implementation of single linked lists for Strings.
+This is an implementation of generic single linked lists.
 
-You can test by running *LinkedListTester.java*.
+
+### DoubleLinkedList.java
+This is an implementation of generic double linked lists.
+
+
+You can test both types of lists by running *LinkedListTester.java*.
+Methods include: add, insert, remove, get, set, size, toString
 
 ## Cryptography
 
-### CaesarCipher.java
+### Caesar.java
 
 This **Caesar Cipher** implementation can encrypt/decrypt a string by passing it to the *crypt method* with a key (negative key for decryption).
 
-You can test by running *CaesarCipher.java*.
+You can test by running *CryptoTest.java*.
+
+## Miscellaneous

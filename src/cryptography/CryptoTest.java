@@ -42,7 +42,9 @@ public class CryptoTest {
                 if (line != null) { data += line; }
             } while (line != null);
         } catch (IOException ex) {
-            System.out.println("I/O Exception" + ex);
+            System.out.println("I/O Exception " + ex);
+        } catch (Exception ex2) {
+            System.out.println("Exception " + ex2);
         }
 
         return data;
