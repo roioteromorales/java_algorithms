@@ -1,9 +1,9 @@
 package linked_list;
 
-public class DoubleLinkedList {
+public class DoubleLinkedList<T> {
     private Node start;
 
-    public DoubleLinkedList(String ... data) {
+    public DoubleLinkedList(T ... data) {
         if (data.length < 1) {
             start = null;
         } else {
@@ -15,12 +15,12 @@ public class DoubleLinkedList {
 
 
     // Adds value to end of the list
-    public void add(String data) {
+    public void add(T data) {
         insert(data, size());
     }
 
     // Inserts value at the given index
-    public void insert(String data, int index) {
+    public void insert(T data, int index) {
         if (start == null) {
             start = new Node(data);
         } else {
@@ -28,7 +28,7 @@ public class DoubleLinkedList {
             Node previous = null;
 
             if (index == 0) {
-                start = new Node(data, start,null);
+                start = new Node(data, start, null);
             }
             else if (index < size()) {
                 // iterator through list to find index
@@ -86,7 +86,7 @@ public class DoubleLinkedList {
 
     }
 
-    public String get(int index) {
+    public T get(int index) {
         try {
             int count = 0;
             Node iterator = start;
@@ -99,11 +99,12 @@ public class DoubleLinkedList {
             return iterator.data;
 
         } catch (NullPointerException ex) {
-            return "invalid index";
+            System.out.println("invalid index");
+            return null;
         }
     }
 
-    public void set(int index, String data) {
+    public void set(int index, T data) {
         try {
             int count = 0;
             Node iterator = start;
@@ -149,22 +150,24 @@ public class DoubleLinkedList {
     }
 
     private class Node {
-        String data;
+        T data;
         Node next;
         Node prev;
 
-        public Node() {
-            this.data = null;
+
+        public Node(T data) {
+            this.data = data;
             this.next = null;
             this.prev = null;
         }
 
-        public Node(String data) {
+        public Node(T data, Node node) {
             this.data = data;
-            this.next = null;
+            this.next = node;
+            this.prev = null;
         }
 
-        public Node(String data, Node next, Node prev) {
+        public Node(T data, Node next, Node prev) {
             this.data = data;
             this.next = next;
             this.prev = prev;
