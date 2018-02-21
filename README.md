@@ -31,7 +31,7 @@ This is an implementation of generic double linked lists.
 
 
 You can test both types of linked lists by running *LinkedListTester.java*.
-Methods include: add, insert, remove, get, set, size, toString
+Methods include: add, insert, remove, get, set, size, toString.
 
 ## Cryptography
 
