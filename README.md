@@ -18,7 +18,7 @@ This includes implementations of:
 - **merge sort**
 
 Every method can work with objects that extend Number.
-You can test both by running *ArrayTester.java*.
+You can test by running *ArrayTester.java*.
 
 ## Linked Lists
 
@@ -45,5 +45,12 @@ You can test by running *CryptoTest.java*.
 
 ### CreditCardValidator.java
 
-This ** *validate method* ** returns a String if the given number is MasterCard, AMEX, or invalid. The algorithm checks the leading
+The *validate method* returns a String if the given number is AMEX, MASTERCARD, VISA or INVALID. The algorithm checks the leading
 digits for the card type and uses Luhn's Algorithm to ensure the credit card number is valid.
+
+## Trees
+
+### BinarySearchTree.java
+
+This is an integer implementation of a sorted **Binary Search Tree**.
+You can test by running *TreeTester.java*.

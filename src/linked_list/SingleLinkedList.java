@@ -154,6 +154,7 @@ public class SingleLinkedList<T> {
         public Node(T data, Node node) {
             this.data = data;
             this.next = node;
+
         }
     }
 
