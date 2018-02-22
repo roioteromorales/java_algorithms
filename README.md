@@ -37,7 +37,8 @@ Methods include: add, insert, remove, get, set, size, toString.
 
 ### Caesar.java
 
-This **Caesar Cipher** implementation can encrypt/decrypt a string by passing it to the *crypt method* with a key (negative key for decryption).
+This [Caesar Cipher](https://en.wikipedia.org/wiki/Caesar_cipher) implementation can encrypt/decrypt a string by passing
+it to the *crypt method* with a key (negative key for decryption).
 
 You can test by running *CryptoTest.java*.
 
@@ -45,8 +46,9 @@ You can test by running *CryptoTest.java*.
 
 ### CreditCardValidator.java
 
-The *validate method* returns a String if the given number is AMEX, MASTERCARD, VISA or INVALID. The algorithm checks the leading
-digits for the card type and uses Luhn's Algorithm to ensure the credit card number is valid.
+The *validate method* returns a String indicating if the given number is AMEX, MASTERCARD, VISA or INVALID. The algorithm
+checks the leading digits for the card type and uses the [Luhn Algorithm](https://en.wikipedia.org/wiki/Luhn_algorithm) to
+ensure the credit card number is valid.
 
 ## Trees
 
