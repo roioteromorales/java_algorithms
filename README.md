@@ -18,7 +18,7 @@ This includes implementations of:
 - **selection sort**
 - **merge sort**
 
-Every method can work with objects that extend Number.
+Every method can work with Objects that extend Number.
 You can test by running *ArrayTester.java*.
 
 ## Linked Lists
@@ -58,8 +58,9 @@ references to a left and right child node. A BST is a binary tree that requires 
 You can test by running *BinaryTreeTester.java*.
 
 ### Trie.java
-This is a case-insensitive implementation of a [trie](https://en.wikipedia.org/wiki/Trie). Each node of the trie has an array
-of children representing the 26 chars A-Z and the apostrophe char.
+This is a case-insensitive implementation of a [Trie](https://en.wikipedia.org/wiki/Trie). Each node of the trie has an array
+of children representing the chars A-Z and the apostrophe char. A String is represented in the Trie with each char being a node,
+and the final char/node has a boolean isWord set to true to indicate this position in the tree is a valid word.
 
 You can test by running *SpellChecker.Java.* The program takes in austinpowers.txt (part of the Austin Powers script) and
 checks if any words are missing from the given dictionary.txt. Using a trie greatly improves the performance over nested for loops.

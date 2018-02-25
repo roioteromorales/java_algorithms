@@ -1,10 +1,7 @@
 package arrays;
 
 public class Sort {
-
-    /*
-     BUBBLE SORT
-     */
+    
     public static <N extends Number> N[] bubbleSort(N[] array) {
 
         if (array.length < 2) {
@@ -27,9 +24,6 @@ public class Sort {
         return array;
     }
 
-    /*
-     INSERTION SORT
-     */
     public static <N extends Number> N[] insertionSort(N[] array) {
 
         // iterate through original array
@@ -50,9 +44,6 @@ public class Sort {
         return array;
     }
 
-    /*
-     SELECTION SORT
-     */
     public static <N extends Number> N[] selectionSort(N[] array) {
         int sorted = 0;
 
@@ -76,9 +67,6 @@ public class Sort {
         return array;
     }
 
-    /*
-     MERGE SORT
-     */
     public static <N extends Number> N[] mergeSort(N[] array) {
 
         if (array.length > 1) {
