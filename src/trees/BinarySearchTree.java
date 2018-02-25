@@ -52,6 +52,70 @@ public class BinarySearchTree {
         }
     }
 
+    void remove(int target) {
+        // call helper remove method
+        remove(target, root);
+    }
+
+    void remove(int target, Node node) {
+        Node iterator = node;
+        Node parent = null;
+
+        // iterate to find the node to be removed
+        while (iterator.data != target) {
+            if (target < iterator.data) {
+                parent = iterator;
+                iterator = iterator.left;
+            }
+            else if (target > iterator.data) {
+                parent = iterator;
+                iterator = iterator.right;
+            }
+
+            if (iterator == null) {
+                System.out.println("data not found.");
+                return;
+            }
+        }
+
+        System.out.println("...item found");
+        // remove root node
+        if (parent == null) {
+
+        }
+        // remove node with no children
+        else if (iterator.left == null && iterator.right == null){
+            System.out.println("...setting item to null");
+             iterator = null;
+        }
+
+    }
+
+    boolean search(int target) {
+        // call the search helper method
+        return search(target, root);
+    }
+
+    boolean search(int target, Node node) {
+        // make sure end of branch hasn't been reached
+        if (node != null) {
+            // target found
+            if (node.data == target) {
+                return true;
+            }
+            // follow the left branch
+            else if (target < node.data) {
+                return search(target, node.left);
+            }
+            // follow the right branch
+            else if (target > node.data) {
+                return search(target, node.right);
+            }
+        }
+
+        return false;
+    }
+
     void print() {
 
         int level = 0;
@@ -83,7 +147,6 @@ public class BinarySearchTree {
             System.out.print("    ");
         }
 
-
         // move down tree
         if (node.left != null) { print(node.left, level + 1); }
         if (node.right != null) { print(node.right, level + 1); }
@@ -103,7 +166,6 @@ public class BinarySearchTree {
         if (accum.length == 1) {
             iterator = accum[0];
         }
-
         // base case (iterator is not a node)
         if (iterator == null) {
             return 0;
@@ -126,10 +188,5 @@ class Node {
 
     Node (int data) {
         this.data = data;
-    }
-
-    Node (int data, Node left, Node right) {
-        this.left = left;
-        this.right = right;
     }
 }
