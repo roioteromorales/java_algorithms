@@ -22,7 +22,7 @@ Every method can work with objects that extend Number.
 You can test by running *ArrayTester.java*.
 
 ## Linked Lists
-A [linked list](https://en.wikipedia.org/wiki/Linked_list#Singly_linked_list) is a linear data structure made up of a
+A [Linked List](https://en.wikipedia.org/wiki/Linked_list) is a linear data structure made up of a
 collection of nodes, with one pointing to the next in sequence.
 
 ### SingleLinkedList.java
@@ -59,10 +59,7 @@ You can test by running *BinaryTreeTester.java*.
 
 ### Trie.java
 This is a case-insensitive implementation of a [trie](https://en.wikipedia.org/wiki/Trie). Each node of the trie has an array
-of children representing the 26 chars A-Z.
+of children representing the 26 chars A-Z and the apostrophe char.
 
-You can test by running *SpellChecker.Java.* The program takes in christmas.txt (A Christmas Carol by Charles Dickens) and
+You can test by running *SpellChecker.Java.* The program takes in austinpowers.txt (part of the Austin Powers script) and
 checks if any words are missing from the given dictionary.txt. Using a trie greatly improves the performance over nested for loops.
-
-
-
