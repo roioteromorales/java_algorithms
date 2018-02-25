@@ -1,7 +1,7 @@
 package arrays;
 
 public class Sort {
-    
+
     public static <N extends Number> N[] bubbleSort(N[] array) {
 
         if (array.length < 2) {

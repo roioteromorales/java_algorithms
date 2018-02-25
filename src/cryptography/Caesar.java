@@ -1,9 +1,6 @@
 package cryptography;
 
 public class Caesar {
-
-
-
     /* CAESAR CIPHER CRYPT
      * encrypts/decrypts the given text by the given key (negative for decryption)
      */

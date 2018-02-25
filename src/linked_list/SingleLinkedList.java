@@ -20,6 +20,7 @@ public class SingleLinkedList<T> {
 
     // Inserts the given data at the given index
     public void insert(T data, int index) {
+        // create new root node
         if (start == null) {
             start = new Node(data);
         } else {
@@ -27,12 +28,12 @@ public class SingleLinkedList<T> {
             Node iterator = start;
             Node previous = null;
 
+            // insert new node in front
             if (index == 0) {
                 start = new Node(data, start);
             }
             else if (index < size()) {
                 // iterate through list to find index
-
                 int count = 0;
 
                 while (count != index) {
@@ -41,6 +42,7 @@ public class SingleLinkedList<T> {
                     count++;
                 }
 
+                // create new node linked to previous node
                 previous.next = new Node(data, iterator);
 
             }

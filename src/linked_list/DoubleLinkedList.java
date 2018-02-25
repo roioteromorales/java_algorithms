@@ -4,15 +4,17 @@ public class DoubleLinkedList<T> {
     private Node start;
 
     public DoubleLinkedList(T ... data) {
+        // no nodes
         if (data.length < 1) {
             start = null;
-        } else {
+        }
+        // convert parameters to nodes
+        else {
             for (int i = 0; i < data.length; i++) {
                 add(data[i]);
             }
         }
     }
-
 
     // Adds value to end of the list
     public void add(T data) {
@@ -21,6 +23,7 @@ public class DoubleLinkedList<T> {
 
     // Inserts value at the given index
     public void insert(T data, int index) {
+        // create initial root node
         if (start == null) {
             start = new Node(data);
         } else {
@@ -40,6 +43,7 @@ public class DoubleLinkedList<T> {
                     count++;
                 }
 
+                // insert and relink
                 previous.next = new Node(data, iterator, previous);
                 iterator.prev = previous.next;
 
@@ -51,6 +55,7 @@ public class DoubleLinkedList<T> {
                     iterator = iterator.next;
                 }
 
+                // add node to end of list
                 iterator.next = new Node(data);
                 iterator.prev = previous;
             }
@@ -75,6 +80,7 @@ public class DoubleLinkedList<T> {
                     count++;
                 }
 
+                // remove and relink
                 previous.next = iterator.next;
                 iterator.next.prev = previous;
 

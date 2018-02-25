@@ -179,14 +179,16 @@ public class BinarySearchTree {
             return 1 + size(iterator.left) + size(iterator.right);
         }
     }
-}
 
-class Node {
-    Node left;
-    Node right;
-    int data;
+    private class Node {
+        Node left;
+        Node right;
+        int data;
 
-    Node (int data) {
-        this.data = data;
+        Node (int data) {
+            this.data = data;
+        }
     }
 }
+
+
