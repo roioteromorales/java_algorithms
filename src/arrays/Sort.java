@@ -113,4 +113,61 @@ public class Sort {
 
         return array;
     }
+
+
+    public static <N extends Number> N[] quickSort(N[] array, int ... boundaries) {
+
+        // start sorting algorithm
+        if (boundaries.length < 2) {
+            return quickSort(array,0,array.length - 1);
+        }
+
+        // base case
+        if (array.length < 2) {
+            return array;
+        }
+
+        // get center of current boundaries as pivot points
+        double pivot = array[boundaries[0] + (boundaries[1] - boundaries[0]) / 2].doubleValue();
+
+        // set incrementers to the current boundaries
+        int left = boundaries[0], right = boundaries[1];
+
+        // iterate towards center until boundary incrementers meet
+        while (left < right) {
+
+            // move left boundary to the right
+            while (array[left].doubleValue() < pivot) {
+                left++;
+            }
+
+            // move right boundary to the left
+            while (array[right].doubleValue() > pivot) {
+                right--;
+            }
+
+            // move elements to correct side of pivot
+            if (left <= right) {
+                // swap
+                N temp = array[left];
+                array[left] = array[right];
+                array[right] = temp;
+
+                // move both boundaries toward center once
+                left++;
+                right--;
+            }
+        }
+
+        // recursive call if left boundary is less than new pivot point (right)
+        if (boundaries[0] < right) {
+            quickSort(array, boundaries[0], right);
+        }
+        // recursive call if right boundary is greater than new pivot point (left)
+        if (boundaries[1] > left) {
+            quickSort(array, left, boundaries[1]);
+        }
+
+        return array;
+    }
 }

@@ -44,7 +44,7 @@ public class ArrayTester {
         printArray(dataUnsorted);
 
         System.out.println("\n\nSorted: ");
-        printArray(Sort.mergeSort(dataUnsorted));
+        printArray(Sort.quickSort(dataUnsorted));
 
     }
 

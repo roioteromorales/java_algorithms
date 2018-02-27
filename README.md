@@ -7,16 +7,21 @@ This repository is for practicing algorithms and working with data structures in
 
 ### Search.java
 This includes implementations of:
-- **linear search**
-- **binary search - recursive**
-- **binary search - non recursive**
+- **linear search -** this is an inefficient (stupid search) algorithm that simply iterates from beginning to end until the element is found
+- **binary search - recursive -** this algorithm recursively divides the search in half until the element is found.
+- **binary search - non recursive-** this algorithm searches an array by continuing to narrow the search boundaries by half
+until the element is found.
 
 ### Sort.java
 This includes implementations of:
-- **bubble sort**
-- **insertion sort**
-- **selection sort**
-- **merge sort**
+- **bubble sort -** this comparison-based algorithm iteratively swaps pairs of elements until the array is sorted.
+- **insertion sort** this comparison-based algorithm inserts each eliminated of the unsorted portion of the array into the
+correct position in the sorted portion of the array.
+- **selection sort -** this algorithm selects the smallest element of the unsorted portion of the array and places it in
+the last position of the sorted portion of the array.
+- **merge sort -** this is a divide and conquer algorithm that focuses on combining arrays that were presorted using recursion.
+- **quick sort -** this is another divide and conquer algorithm that focuses on recursively choosing pivot points and swapping
+elements so that smaller elements are left of the pivot point and larger elements are to the right.
 
 Every method can work with Objects that extend Number.
 You can test by running *ArrayTester.java*.
@@ -63,4 +68,5 @@ of children representing the chars A-Z and the apostrophe char. A String is repr
 and the final char/node has a boolean isWord set to true to indicate this position in the tree is a valid word.
 
 You can test by running *SpellChecker.Java.* The program takes in austinpowers.txt (part of the Austin Powers script) and
-checks if any words are missing from the given dictionary.txt. Using a trie greatly improves the performance over nested for loops.
+checks if any words are missing from the given dictionary.txt. Using a trie greatly improves the performance over nested for
+loops.
