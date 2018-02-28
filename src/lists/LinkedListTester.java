@@ -1,4 +1,4 @@
-package linked_list;
+package lists;
 
 public class LinkedListTester {
 

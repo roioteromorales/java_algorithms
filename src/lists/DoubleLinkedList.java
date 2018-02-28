@@ -1,83 +1,99 @@
-package linked_list;
+package lists;
 
-public class SingleLinkedList<T> {
+public class DoubleLinkedList<T> {
     private Node start;
 
-    public SingleLinkedList(T ... data) {
+    public DoubleLinkedList(T ... data) {
+        // no nodes
         if (data.length < 1) {
             start = null;
-        } else {
+        }
+        // convert parameters to nodes
+        else {
             for (int i = 0; i < data.length; i++) {
                 add(data[i]);
             }
         }
     }
 
-    // Adds the given data to the end of the list
+    // Adds value to end of the list
     public void add(T data) {
         insert(data, size());
     }
 
-    // Inserts the given data at the given index
+    // Inserts value at the given index
     public void insert(T data, int index) {
-        // create new root node
+        // create initial root node
         if (start == null) {
             start = new Node(data);
         } else {
-
             Node iterator = start;
             Node previous = null;
 
-            // insert new node in front
             if (index == 0) {
-                start = new Node(data, start);
+                start = new Node(data, start, null);
             }
             else if (index < size()) {
-                // iterate through list to find index
+                // iterator through list to find index
                 int count = 0;
-
                 while (count != index) {
+
                     previous = iterator;
                     iterator = iterator.next;
                     count++;
                 }
 
-                // create new node linked to previous node
-                previous.next = new Node(data, iterator);
+                // insert and relink
+                previous.next = new Node(data, iterator, previous);
+                iterator.prev = previous.next;
 
             }
             else {
-                // iterator through list to find last node
+                // iterate through list to end
                 while (iterator.next != null) {
+                    previous = iterator;
                     iterator = iterator.next;
                 }
+
+                // add node to end of list
                 iterator.next = new Node(data);
+                iterator.prev = previous;
             }
         }
     }
 
-    // Removes the node at the given index
-    public void remove(int index) { // SHOULD THIS THROW EXCEPTION??
-        try {
-            int count = 0;
-            Node previous = null;
-            Node iterator = start;
+    public void remove(int index) {
 
-            // iterate until index is reached
-            while (count != index) {
-                previous = iterator;
-                iterator = iterator.next;
-                count++;
+
+        if (index == 0) {
+            start = start.next;
+        }
+        else {
+            try {
+                Node iterator = start;
+                Node previous = null;
+
+                // iterator through list to find index
+                int count = 0;
+                while (count != index) {
+
+                    previous = iterator;
+                    iterator = iterator.next;
+                    count++;
+                }
+
+                // remove and relink
+                previous.next = iterator.next;
+                iterator.next.prev = previous;
+
+            } catch (NullPointerException ex) {
+                System.out.println("invalid index");
             }
 
-            // link previous node to the node after the current
-            previous.next = iterator.next;
-        } catch (NullPointerException ex) {
-            System.out.println("invalid index");
         }
+
     }
 
-    // Returns the value at the given index
     public T get(int index) {
         try {
             int count = 0;
@@ -96,7 +112,6 @@ public class SingleLinkedList<T> {
         }
     }
 
-    // Sets the value of the given index to the given data
     public void set(int index, T data) {
         try {
             int count = 0;
@@ -116,7 +131,6 @@ public class SingleLinkedList<T> {
         }
     }
 
-    // Returns the size of the list
     public int size() {
         int count = 0;
         Node iterator = start;
@@ -130,7 +144,6 @@ public class SingleLinkedList<T> {
         return count;
     }
 
-    // Converts list values into String
     public String toString() {
         Node iterator = start;
         String output = "";
@@ -147,19 +160,18 @@ public class SingleLinkedList<T> {
     private class Node {
         T data;
         Node next;
+        Node prev;
 
         public Node(T data) {
             this.data = data;
             this.next = null;
+            this.prev = null;
         }
 
-        public Node(T data, Node node) {
+        public Node(T data, Node next, Node prev) {
             this.data = data;
-            this.next = node;
-
+            this.next = next;
+            this.prev = prev;
         }
     }
-
 }
-
-

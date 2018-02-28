@@ -1,97 +1,87 @@
-package linked_list;
+package lists;
 
-public class DoubleLinkedList<T> {
+public class SingleLinkedList<T> {
     private Node start;
 
-    public DoubleLinkedList(T ... data) {
-        // no nodes
+    public SingleLinkedList(T ... data) {
         if (data.length < 1) {
             start = null;
-        }
-        // convert parameters to nodes
-        else {
+        } else {
             for (int i = 0; i < data.length; i++) {
                 add(data[i]);
             }
         }
     }
 
-    // Adds value to end of the list
+    // Adds the given data to the end of the list
     public void add(T data) {
         insert(data, size());
     }
 
-    // Inserts value at the given index
+    // Inserts the given data at the given index
     public void insert(T data, int index) {
-        // create initial root node
+        // create new root node
         if (start == null) {
             start = new Node(data);
         } else {
+
             Node iterator = start;
             Node previous = null;
 
+            // insert new node in front
             if (index == 0) {
-                start = new Node(data, start, null);
+                start = new Node(data, start);
             }
             else if (index < size()) {
-                // iterator through list to find index
+                // iterate through list to find index
                 int count = 0;
-                while (count != index) {
 
+                while (count != index) {
                     previous = iterator;
                     iterator = iterator.next;
                     count++;
                 }
 
-                // insert and relink
-                previous.next = new Node(data, iterator, previous);
-                iterator.prev = previous.next;
+                // create new node linked to previous node
+                previous.next = new Node(data, iterator);
 
             }
             else {
-                // iterate through list to end
+                // iterator through list to find last node
                 while (iterator.next != null) {
-                    previous = iterator;
                     iterator = iterator.next;
                 }
-
-                // add node to end of list
                 iterator.next = new Node(data);
-                iterator.prev = previous;
             }
         }
     }
 
+    // Removes the node at the given index
     public void remove(int index) {
-        Node iterator = start;
-        Node previous = null;
-
         if (index == 0) {
             start = start.next;
-        }
-        else {
+        } else {
             try {
-                // iterator through list to find index
                 int count = 0;
-                while (count != index) {
+                Node previous = null;
+                Node iterator = start;
 
+                // iterate until index is reached
+                while (count != index) {
                     previous = iterator;
                     iterator = iterator.next;
                     count++;
                 }
 
-                // remove and relink
+                // link previous node to the node after the current
                 previous.next = iterator.next;
-                iterator.next.prev = previous;
-
             } catch (NullPointerException ex) {
                 System.out.println("invalid index");
             }
-
         }
-
     }
 
+    // Returns the value at the given index
     public T get(int index) {
         try {
             int count = 0;
@@ -110,6 +100,7 @@ public class DoubleLinkedList<T> {
         }
     }
 
+    // Sets the value of the given index to the given data
     public void set(int index, T data) {
         try {
             int count = 0;
@@ -129,6 +120,7 @@ public class DoubleLinkedList<T> {
         }
     }
 
+    // Returns the size of the list
     public int size() {
         int count = 0;
         Node iterator = start;
@@ -142,6 +134,7 @@ public class DoubleLinkedList<T> {
         return count;
     }
 
+    // Converts list values into String
     public String toString() {
         Node iterator = start;
         String output = "";
@@ -158,18 +151,19 @@ public class DoubleLinkedList<T> {
     private class Node {
         T data;
         Node next;
-        Node prev;
 
         public Node(T data) {
             this.data = data;
             this.next = null;
-            this.prev = null;
         }
 
-        public Node(T data, Node next, Node prev) {
+        public Node(T data, Node node) {
             this.data = data;
-            this.next = next;
-            this.prev = prev;
+            this.next = node;
+
         }
     }
+
 }
+
+
