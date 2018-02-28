@@ -3,7 +3,7 @@ package hashmaps;
 import lists.SingleLinkedList;
 
 public class HashMap<V extends Comparable> {
-    SingleLinkedList<Pair>[] table = new SingleLinkedList[26];
+    private SingleLinkedList<Pair>[] table = new SingleLinkedList[26];
 
     public void add(String key, V value) {
         int hash = hash(key);
