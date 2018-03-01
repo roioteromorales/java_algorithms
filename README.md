@@ -1,4 +1,4 @@
-# java_algorithms
+# Java Algorithms & Data Structures
 
 This repository is for practicing algorithms and working with data structures in Java. Shout out to
 [Harvard's CS50](https://cs50.harvard.edu/) and *Grokking Algorithms* for many of these program prompts.
@@ -52,8 +52,6 @@ This is used for collisions in the Hash Map implementation (see [Hashmaps](https
 **DoubleLinkedList.java** is an implementation of generic double linked lists. This furthers the functionality of a
 single linked list by implementing a reference to the previous node in addition to the next node.
 
-You can test both types of linked lists by running *LinkedListTester.java*.
-
 **Stack.java** is an implementation of a [generic stack](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)), which is
 a special list that utilizes a First-In-First-Out methodology.
 
@@ -76,6 +74,6 @@ requires the right child node to be greater than the left. You can test by runni
 of children representing the chars A-Z and the apostrophe char. A String is represented in the Trie with each char being a node,
 and the final char/node has a boolean isWord set to true to indicate this position in the tree is a valid word.
 
-**SpellChecker.Java** uses a Trie to determine if any words in *austinpowers.txt* (part of the Austin Powers script) are
+**SpellChecker.java** uses a Trie to determine if any words in *austinpowers.txt* (part of the Austin Powers script) are
 missing from the given *dictionary.txt*. Using a trie greatly improves the performance over nested for loops.
 
