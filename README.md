@@ -5,7 +5,7 @@ This repository is for practicing algorithms and working with data structures in
 
 ## Arrays
 
-**Search.java** - includes implementations of:
+**Search.java** includes implementations of:
 - **linear search -** an inefficient (stupid search) algorithm that simply iterates from beginning to end until
 the element is found.
 - **binary search (recursive) -** an algorithm that recursively divides the search in half until the element is found.
@@ -29,26 +29,36 @@ Every method can work with Objects that extend Number. You can test by running *
 **Caesar.java** is an implementation of [Caesar Cipher](https://en.wikipedia.org/wiki/Caesar_cipher). It can encrypt/decrypt a string by passing
 it to the *crypt method* with a key (negative key for decryption). You can test by running *CryptoTest.java*.
 
+## Graphs
+
+**BreadthFirstSearch.java** finds the filepath to a target file starting from the given root.
+
+**FileCrawler.java** uses Breadth First Search to find a given file from several different starting points.
+
 ## Hash Maps
 
 **HashMap.java** is an implementation for a generic hashmap that uses an internal array, a simple *hash method* based on
-the first character of the key and a **Single Linked List** (see Lists section) for collisions. A private inner class
-called *Pair* is used to store two pieces of data within a linked list node. You can test by running *HashMapTester.java*.
+the first character of the key and a **Single Linked List** (see [Lists](https://github.com/kevgraham/java_algorithms#lists))
+for collisions. A private inner class called *Pair* is used to store two pieces of data within a linked list node.
+You can test by running *HashMapTester.java*.
 
 ## Lists
 A [Linked List](https://en.wikipedia.org/wiki/Linked_list) is a linear data structure made up of a
 collection of nodes, with one pointing to the next in sequence.
 
-**SingleLinkedList.java** is an implementation of generic single linked lists, with each node only references the next node. This is used for
-collision in the Hash Map implementation.
+**SingleLinkedList.java** is an implementation of generic single linked lists, with each node only references the next node.
+This is used for collisions in the Hash Map implementation (see [Hashmaps](https://github.com/kevgraham/java_algorithms#hash-maps)).
 
-**DoubleLinkedList.java** is an implementation of generic double linked lists. This furthers the functionality of a single linked list by implementing
-a reference to the previous node in addition to the next node.
+**DoubleLinkedList.java** is an implementation of generic double linked lists. This furthers the functionality of a
+single linked list by implementing a reference to the previous node in addition to the next node.
 
 You can test both types of linked lists by running *LinkedListTester.java*.
 
-**Stack.java** is an implementation of a [generic stack](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)), which utilizes the
-SingleLinkedList class.
+**Stack.java** is an implementation of a [generic stack](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)), which is
+a special list that utilizes a First-In-First-Out methodology.
+
+**Queue.java** is an implementation of a [generic queue](https://en.wikipedia.org/wiki/Queue_(abstract_data_type)). which is
+a special list that utilizes a Last-In-First-Out methodology.
 
 ## Miscellaneous
 
@@ -58,15 +68,14 @@ ensure the credit card number is valid.
 
 ## Trees
 
-**BinarySearchTree.java** is an integer implementation of a sorted [Binary Search Tree (BST)](https://en.wikipedia.org/wiki/Binary_search_tree). A binary tree starts from a root node, and has
-references to left and right child nodes. A BST is a binary tree that requires the right child node to be greater than the left.
-
-You can test by running *BinaryTreeTester.java*.
+**BinarySearchTree.java** is an integer implementation of a sorted [Binary Search Tree (BST)](https://en.wikipedia.org/wiki/Binary_search_tree).
+A binary tree starts from a root node, and has references to left and right child nodes. A BST is a binary tree that
+requires the right child node to be greater than the left. You can test by running *BinaryTreeTester.java*.
 
 **Trie.java** is a case-insensitive implementation of a [Trie](https://en.wikipedia.org/wiki/Trie). Each node of the trie has an array
 of children representing the chars A-Z and the apostrophe char. A String is represented in the Trie with each char being a node,
 and the final char/node has a boolean isWord set to true to indicate this position in the tree is a valid word.
 
-*SpellChecker.Java.* uses a Trie to determine if any words in *austinpowers.txt* (part of the Austin Powers script) are
+**SpellChecker.Java** uses a Trie to determine if any words in *austinpowers.txt* (part of the Austin Powers script) are
 missing from the given *dictionary.txt*. Using a trie greatly improves the performance over nested for loops.
 
