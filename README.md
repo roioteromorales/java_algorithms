@@ -31,9 +31,9 @@ it to the *crypt method* with a key (negative key for decryption). You can test 
 
 ## Graphs
 
-**BreadthFirstSearch.java** finds the filepath to a target file starting from the given root.
-
-**FileCrawler.java** uses Breadth First Search to find a given file from several different starting points.
+**FileCrawler.java** uses [Breadth First Search (BFS)](https://en.wikipedia.org/wiki/Breadth-first_search) to find the
+filepath in the subdirectory of several different starting points. BFS uses a Queue (see [Lists](https://github.com/kevgraham/java_algorithms#lists))
+to check subdirectories in the order in which they are found.
 
 ## Hash Maps
 
