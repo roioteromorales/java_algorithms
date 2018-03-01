@@ -95,8 +95,7 @@ public class SingleLinkedList<T> {
             return iterator.data;
 
         } catch (NullPointerException ex) {
-            System.out.println("invalid index");
-            return null;
+            return null; // list is empty
         }
     }
 
