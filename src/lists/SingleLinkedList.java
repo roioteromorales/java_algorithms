@@ -147,6 +147,10 @@ public class SingleLinkedList<T> {
         return output;
     }
 
+    public boolean isEmpty() {
+        return isEmpty();
+    }
+
     private class Node {
         T data;
         Node next;
