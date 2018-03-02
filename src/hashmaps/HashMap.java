@@ -49,6 +49,23 @@ public class HashMap<V> {
         return null;
     }
 
+    public SingleLinkedList<String> keys() {
+        SingleLinkedList<String> keys = new SingleLinkedList<>();
+
+        // iterate through rows
+        for (int i = 0; i < table.length ; i++) {
+            if (table[i] != null) {
+                // iterate through columns
+                for (int j = 0; j < table[i].size(); j++) {
+                    // add key to list
+                    keys.add(table[i].get(j).key);
+                }
+            }
+        }
+
+        return keys;
+    }
+
     private int hash(String key) {
         // get first char, make lowercase
         int c = (int)key.toLowerCase().charAt(0);
