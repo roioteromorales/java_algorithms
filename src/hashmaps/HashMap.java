@@ -2,7 +2,7 @@ package hashmaps;
 
 import lists.SingleLinkedList;
 
-public class HashMap<V extends Comparable> {
+public class HashMap<V> {
     private SingleLinkedList<Pair>[] table = new SingleLinkedList[26];
 
     public void add(String key, V value) {
@@ -39,7 +39,7 @@ public class HashMap<V extends Comparable> {
             // check for matching data
             Pair p = table[hash].get(i);
 
-            if (p.key == key) {
+            if (p.key.equals(key)) {
                 // item found
                 return p.value;
             }
