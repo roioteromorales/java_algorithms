@@ -35,6 +35,13 @@ it to the *crypt method* with a key (negative key for decryption). You can test 
 filepath in the subdirectory of several different starting points. BFS uses a Queue (see [Lists](https://github.com/kevgraham/java_algorithms#lists))
 to check subdirectories in the order in which they are found.
 
+**FlightRoutes.java** uses [Dijkstra's Algorithm](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm) to find the shortest
+set of AirAsia routes between two airports. The algorithm uses the [Haversine distance](https://en.wikipedia.org/wiki/Haversine_formula)
+in kilometers between the latitude and longitude of airports for its weights. The program uses data I cleaned from [https://openflights.org/](https://openflights.org/).
+The airport data is loaded from *airports.csv* into a hashmap (see [Hash Maps](https://github.com/kevgraham/java_algorithms#hash-maps)),
+which is used to retrieve the latitude and longitude when calculating route distances for the routes in *routes.cvs*. For the algorithm,
+Airports are nodes and Routes are edges.
+
 ## Hash Maps
 
 **HashMap.java** is an implementation for a generic hashmap that uses an internal array, a simple *hash method* based on
@@ -74,6 +81,6 @@ requires the right child node to be greater than the left. You can test by runni
 of children representing the chars A-Z and the apostrophe char. A String is represented in the Trie with each char being a node,
 and the final char/node has a boolean isWord set to true to indicate this position in the tree is a valid word.
 
-**SpellChecker.java** uses a Trie to determine if any words in *austinpowers.txt* (part of the Austin Powers script) are
+**SpellChecker.java** uses a *Trie* to determine if any words in *austinpowers.txt* (part of the Austin Powers script) are
 missing from the given *dictionary.txt*. Using a trie greatly improves the performance over nested for loops.
 
