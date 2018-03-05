@@ -27,7 +27,7 @@ Every method can work with Objects that extend Number. You can test by running *
 ## Cryptography
 
 **Caesar.java** is an implementation of [Caesar Cipher](https://en.wikipedia.org/wiki/Caesar_cipher). It can encrypt/decrypt a string by passing
-it to the *crypt method* with a key (negative key for decryption). You can test by running *CryptoTest.java*.
+it to the *crypt method* with a key (negative key for decryption). Each character of the plaintext is shifted by the key.
 
 ## Graphs
 
