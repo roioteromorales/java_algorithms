@@ -28,6 +28,11 @@ public class Caesar {
 
     }
 
+    /**
+     * Reads a file in String format
+     * @param path the file can be reached
+     * @return a String with the contents of the given file
+     */
     public static String readFile(String path) {
         String data = "";
         String line;
@@ -49,6 +54,11 @@ public class Caesar {
         return data;
     }
 
+    /**
+     * Writes a String to a file
+     * @param text to be written
+     * @param path to write to
+     */
     public static void writeFile(String text, String path) {
 
         // open writer
@@ -60,8 +70,11 @@ public class Caesar {
         }
     }
 
-    /* CAESAR CIPHER CRYPT
-     * encrypts/decrypts the given text by the given key (negative for decryption)
+    /**
+     * Encrypts/Decryptes a String using Caesar's Cipher with the given key
+     * @param text to be encrypted/decrypted
+     * @param key to shift the chars (negative for decryption)
+     * @return a String with its chars shifted by key
      */
     public static String crypt(String text, int key) {
         String output = "";
