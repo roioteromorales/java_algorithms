@@ -112,8 +112,6 @@ public class BinarySearchTree {
 
                 // remove old smallest node
                 remove(smallest.data,node.right);
-
-                size--;
                 return node;
             }
         }
