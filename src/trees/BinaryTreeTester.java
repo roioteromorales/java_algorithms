@@ -30,6 +30,13 @@ public class BinaryTreeTester {
         System.out.println("Removing 10...");
 
         tree.print();
+        tree.remove(12);
+        System.out.println("Removing 12...");
+
+
+
+
+        tree.print();
 
         System.out.println("\nSize: " + tree.size);
         System.out.println("\nSearch 1: " + tree.search(1));
