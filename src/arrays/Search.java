@@ -2,6 +2,13 @@ package arrays;
 
 public class Search {
 
+    /**
+     * Searches through the array using Linear Search
+     * @param array to be searched
+     * @param target a number to search for
+     * @param <N> any Number Object
+     * @return whether the target is in the array
+     */
     public static <N extends Number> boolean linearSearch(N[] array, N target) {
         // iterate through the array
        for (N n : array) {
@@ -10,6 +17,14 @@ public class Search {
        return false;
     }
 
+    /**
+     * Searches through the array using Binary Search Recursively
+     * @param array to be searched
+     * @param target a number to search for
+     * @param points used for recursion to track boundaries
+     * @param <N> any Number Object
+     * @return whether the target is in the array
+     */
     public static <N extends Number> boolean binarySearch(N[] array, N target, int ... points) {
         // set boundaries
         int left = (points.length > 0) ? points[0] : 0;
@@ -34,6 +49,13 @@ public class Search {
         }
     }
 
+    /**
+     * Searches through the array using Binary Search Non-Recursively
+     * @param array to be searched
+     * @param target a number to search for
+     * @param <N> any Number Object
+     * @return whether the target is in the array
+     */
     public static <N extends Number> boolean binaryNonRecursiveSearch(N[] array, N target) {
         int left = 0;
         int right = array.length - 1;

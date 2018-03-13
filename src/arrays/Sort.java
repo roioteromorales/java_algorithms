@@ -2,6 +2,12 @@ package arrays;
 
 public class Sort {
 
+    /**
+     * Sorts an array using Bubble Sort
+     * @param array to be sorted
+     * @param <N> any Number Object
+     * @return the sorted array
+     */
     public static <N extends Number> N[] bubbleSort(N[] array) {
 
         if (array.length < 2) {
@@ -24,6 +30,12 @@ public class Sort {
         return array;
     }
 
+    /**
+     * Sorts an array using Insertion Sort
+     * @param array to be sorted
+     * @param <N> any Number Object
+     * @return the sorted array
+     */
     public static <N extends Number> N[] insertionSort(N[] array) {
 
         // iterate through original array
@@ -44,6 +56,12 @@ public class Sort {
         return array;
     }
 
+    /**
+     * Sorts an array using Selection Sort
+     * @param array to be sorted
+     * @param <N> any Number Object
+     * @return the sorted array
+     */
     public static <N extends Number> N[] selectionSort(N[] array) {
         int sorted = 0;
 
@@ -67,6 +85,12 @@ public class Sort {
         return array;
     }
 
+    /**
+     * Sorts an array using Merge Sort
+     * @param array to be sorted
+     * @param <N> any Number Object
+     * @return the sorted array
+     */
     public static <N extends Number> N[] mergeSort(N[] array) {
 
         if (array.length > 1) {
@@ -115,6 +139,13 @@ public class Sort {
     }
 
 
+    /**
+     * Sorts an array using Quick Sort
+     * @param array to be sorted
+     * @param boundaries used for recursion
+     * @param <N> any Number Object
+     * @return the sorted array
+     */
     public static <N extends Number> N[] quickSort(N[] array, int ... boundaries) {
 
         // start sorting algorithm
