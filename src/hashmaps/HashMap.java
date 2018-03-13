@@ -5,6 +5,11 @@ import lists.SingleLinkedList;
 public class HashMap<V> {
     private SingleLinkedList<Pair>[] table = new SingleLinkedList[26];
 
+    /**
+     * Adds the key-value pair to the hashmap
+     * @param key a String
+     * @param value any Object
+     */
     public void add(String key, V value) {
         int hash = hash(key);
 
@@ -16,6 +21,10 @@ public class HashMap<V> {
         table[hash].add(new Pair(key, value));
     }
 
+    /**
+     * Removes the pair at the given key from the hashmap
+     * @param key of pair to be removed
+     */
     public void remove(String key) {
         int hash = hash(key);
 
@@ -31,6 +40,11 @@ public class HashMap<V> {
         }
     }
 
+    /**
+     * Finds the value of a key
+     * @param key to search for
+     * @return value of the given key
+     */
     public V find(String key) {
         int hash = hash(key);
 
@@ -49,6 +63,10 @@ public class HashMap<V> {
         return null;
     }
 
+    /**
+     * Returns all the keys in the hashmap
+     * @return a SingleLinkedList of String keys
+     */
     public SingleLinkedList<String> keys() {
         SingleLinkedList<String> keys = new SingleLinkedList<>();
 
@@ -66,6 +84,11 @@ public class HashMap<V> {
         return keys;
     }
 
+    /**
+     * Hashes a key to 26 locations based on first letter
+     * @param key to be hashed
+     * @return a hashed key String
+     */
     private int hash(String key) {
         // get first char, make lowercase
         int c = (int)key.toLowerCase().charAt(0);
@@ -74,6 +97,9 @@ public class HashMap<V> {
         return c;
     }
 
+    /**
+     * A Key-Value Pair
+     */
     private class Pair {
         String key;
         V value;

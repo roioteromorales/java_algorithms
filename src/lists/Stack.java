@@ -3,13 +3,19 @@ package lists;
 public class Stack<V> {
     private SingleLinkedList<V> list = new SingleLinkedList<>();
 
-    // adds item to stack
+    /**
+     * Adds an item to the stack
+     * @param item to be added
+     */
     public void push(V item) {
         // insert item into front of list
         list.insert(item, 0);
     }
 
-    // removes and returns item from stack
+    /**
+     * Removes an item from the stack
+     * @return the removed item
+     */
     public V pop() {
         try {
             // get first item
@@ -23,6 +29,4 @@ public class Stack<V> {
             return null;
         }
     }
-
-
 }

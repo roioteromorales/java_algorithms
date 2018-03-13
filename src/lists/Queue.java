@@ -7,14 +7,21 @@ public class Queue<V> {
     public Queue() {
         isEmpty = true;
     }
-    // adds item to stack
+
+    /**
+     * Adds an item to the Queue
+     * @param item to be added
+     */
     public void enqueue(V item) {
         // insert item into front of list
         list.add(item);
         isEmpty = false;
     }
 
-    // removes and returns item from stack
+    /**
+     * Removes an item from the Queue
+     * @return the removed item
+     */
     public V dequeue() {
         try {
             // get last item

@@ -13,12 +13,19 @@ public class SingleLinkedList<T> {
         }
     }
 
-    // Adds the given data to the end of the list
+    /**
+     * Adds a new Node the given data to the end of the list
+     * @param data to be added
+     */
     public void add(T data) {
         insert(data, size());
     }
 
-    // Inserts the given data at the given index
+    /**
+     * Inserts a new Node with the given data at the given index
+     * @param data to be added
+     * @param index to put the Node
+     */
     public void insert(T data, int index) {
         // create new root node
         if (start == null) {
@@ -56,7 +63,10 @@ public class SingleLinkedList<T> {
         }
     }
 
-    // Removes the node at the given index
+    /**
+     * Removes the Node at the given index
+     * @param index to put the Node
+     */
     public void remove(int index) {
         if (index == 0) {
             start = start.next;
@@ -81,7 +91,11 @@ public class SingleLinkedList<T> {
         }
     }
 
-    // Returns the value at the given index
+    /**
+     * Returns the value at the given index
+     * @param index to get the value
+     * @return the value at the index
+     */
     public T get(int index) {
         try {
             int count = 0;
@@ -99,7 +113,11 @@ public class SingleLinkedList<T> {
         }
     }
 
-    // Sets the value of the given index to the given data
+    /**
+     * Sets the value of the given index to the given data
+     * @param index to put the data
+     * @param data to be set
+     */
     public void set(int index, T data) {
         try {
             int count = 0;
@@ -119,7 +137,10 @@ public class SingleLinkedList<T> {
         }
     }
 
-    // Returns the size of the list
+    /**
+     * Determines the size of the list
+     * @return an Integer size
+     */
     public int size() {
         int count = 0;
         Node iterator = start;
@@ -133,7 +154,10 @@ public class SingleLinkedList<T> {
         return count;
     }
 
-    // Converts list values into String
+    /**
+     * Converts the list into a String
+     * @return a human readable String
+     */
     public String toString() {
         Node iterator = start;
         String output = "";
@@ -151,6 +175,9 @@ public class SingleLinkedList<T> {
         return isEmpty();
     }
 
+    /**
+     * A Node of a Linked List
+     */
     private class Node {
         T data;
         Node next;

@@ -16,12 +16,19 @@ public class DoubleLinkedList<T> {
         }
     }
 
-    // Adds value to end of the list
+    /**
+     * Adds a new Node the given value to the end of the list
+     * @param data to be added
+     */
     public void add(T data) {
         insert(data, size());
     }
 
-    // Inserts value at the given index
+    /**
+     * Inserts a Node with the given value at the given index
+     * @param data to be added
+     * @param index to add the Node
+     */
     public void insert(T data, int index) {
         // create initial root node
         if (start == null) {
@@ -62,6 +69,10 @@ public class DoubleLinkedList<T> {
         }
     }
 
+    /**
+     * Removes the Node at the given index
+     * @param index to remove the Node
+     */
     public void remove(int index) {
 
 
@@ -94,6 +105,11 @@ public class DoubleLinkedList<T> {
 
     }
 
+    /**
+     * Returns the value at the give index
+     * @param index to get the value
+     * @return the value at the index
+     */
     public T get(int index) {
         try {
             int count = 0;
@@ -112,6 +128,11 @@ public class DoubleLinkedList<T> {
         }
     }
 
+    /**
+     * Sets the value of the given index to the given data
+     * @param index to put the data
+     * @param data to be set
+     */
     public void set(int index, T data) {
         try {
             int count = 0;
@@ -131,6 +152,10 @@ public class DoubleLinkedList<T> {
         }
     }
 
+    /**
+     * Determines the size of the list
+     * @return an Integer size
+     */
     public int size() {
         int count = 0;
         Node iterator = start;
@@ -144,6 +169,10 @@ public class DoubleLinkedList<T> {
         return count;
     }
 
+    /**
+     * Converts the list into a String
+     * @return a human readable String
+     */
     public String toString() {
         Node iterator = start;
         String output = "";
@@ -157,6 +186,9 @@ public class DoubleLinkedList<T> {
         return output;
     }
 
+    /**
+     * A Node of a Linked List
+     */
     private class Node {
         T data;
         Node next;

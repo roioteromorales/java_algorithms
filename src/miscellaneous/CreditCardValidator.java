@@ -15,6 +15,11 @@ public class CreditCardValidator {
     }
 
 
+    /**
+     * Determines whether a given Credit Card Number is valid
+     * @param cc_number as a long with no dashes
+     * @return a boolean whether the Credit Card Number is valid
+     */
     public static String validate(long cc_number) {
 
         // ensure correct # of digits
@@ -43,6 +48,11 @@ public class CreditCardValidator {
         return "INVALID";
     }
 
+    /**
+     * Determines whether the given Credit Card Number passes Luhn's Algorithm
+     * @param cc_number as a long with no dashes
+     * @return a boolean whether the Credit Card Number passes Luhn's Algorithm
+     */
     private static boolean luhnAlgorithm(long cc_number) {
         long num = cc_number;
         int count = 0;
