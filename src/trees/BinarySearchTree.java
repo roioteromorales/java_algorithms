@@ -2,6 +2,7 @@ package trees;
 
 public class BinarySearchTree {
     Node root;
+    int size;
 
     BinarySearchTree(int ... data) {
         if (data.length < 1) {
@@ -13,89 +14,138 @@ public class BinarySearchTree {
         }
     }
 
-    void insert(int data) {
-        // create initial root node
+    /**
+     * Adds an Integer to the tree
+     * @param data to be added
+     */
+    public void insert(int data) {
+        // if the tree is empty
         if (root == null) {
             root = new Node(data);
+            size++;
         }
-        //
+        // start the recursive method
         else {
-            Node iterator = root;
-
-            // iterate until node is added
-            while (true) {
-                // check left node
-                if (data < iterator.data) {
-                    // move down one node
-                    if (iterator.left != null) {
-                        iterator = iterator.left;
-                    }
-                    // add new node
-                    else if (iterator.left == null) {
-                        iterator.left = new Node(data);
-                        return;
-                    }
-                }
-                // check right
-                else {
-                    // move down one node
-                    if (iterator.right != null) {
-                        iterator = iterator.right;
-                    }
-                    // add new node
-                    else if (iterator.right == null) {
-                        iterator.right = new Node(data);
-                        return;
-                    }
-                }
-            }
+            insert(data, root);
         }
     }
 
-    void remove(int target) {
-        // call helper remove method
+    /** HELPER METHOD
+     * Recursively adds an Integer to the tree
+     * @param data to be added
+     * @param node the root node
+     * @return new node recursively
+     */
+    private Node insert(int data, Node node) {
+        // create new node
+        if (node == null) {
+            node = new Node(data);
+            size++;
+        } else {
+            // move to left of tree
+            if (data <= node.data) {
+                node.left = insert(data, node.left);
+            }
+            // move to right of tree
+            else {
+                node.right = insert(data, node.right);
+            }
+        }
+
+        return node;
+    }
+
+    /**
+     * Removes a value from the tree
+     * @param target value to be removed
+     */
+    public void remove(int target) {
         remove(target, root);
     }
 
-    void remove(int target, Node node) {
-        Node iterator = node;
-        Node parent = null;
+    /** HELPER METHOD
+     * Recursively removes a value from the tree
+     * @param target value to be removed
+     * @param node node for recursive calls
+     * @return node for recursive calls
+     */
+    private Node remove(int target, Node node) {
 
-        // iterate to find the node to be removed
-        while (iterator.data != target) {
-            if (target < iterator.data) {
-                parent = iterator;
-                iterator = iterator.left;
-            }
-            else if (target > iterator.data) {
-                parent = iterator;
-                iterator = iterator.right;
-            }
+        // currently at the target Node
+        if (node.data == target) {
 
-            if (iterator == null) {
-                System.out.println("data not found.");
-                return;
+            // currently at a leaf Node
+            if (node.left == null && node.right == null) {
+                // delete current Node
+                size--;
+                return null;
+            }
+            // no left branch
+            else if (node.left == null) {
+                // delete current Node and link to right branch
+                size--;
+                return node.right;
+            }
+            // no right branch
+            else if (node.right == null) {
+                // delete current Node and link to left branch
+                size--;
+                return node.left;
+            }
+            // two branches
+            else {
+                // get the smallest node that's bigger than left node
+                // swap its value to the current node position then remove the old node
+
+                // start at the top of the right branch
+                Node smallest = node.right;
+
+                // iterate down the left to the smallest node
+                while (smallest.left != null) {
+                    smallest = smallest.left;
+                }
+
+                // swap current data with smallest
+                int temp = node.data;
+                node.data = smallest.data;
+                smallest.data = temp;
+
+                // remove old smallest node
+                remove(smallest.data,node.right);
+
+                size--;
+                return node;
             }
         }
 
-        System.out.println("...item found");
-        // remove root node
-        if (parent == null) {
-
-        }
-        // remove node with no children
-        else if (iterator.left == null && iterator.right == null){
-            System.out.println("...setting item to null");
-             iterator = null;
+        // recursive calls
+        if (target < node.data) {
+            // move left
+            node.left = remove(target, node.left);
+        } else {
+            // move right
+            node.right = remove(target, node.right);
         }
 
+        return node;
     }
 
+    /**
+     * Searches the tree for the target value
+     * @param target Integer to search for
+     * @return whether the target value was found
+     */
     boolean search(int target) {
         // call the search helper method
         return search(target, root);
     }
 
+    /** HELPER METHOD
+     * Recursively searches the tree for the target value
+     * @param target Integer to search for
+     * @param node root of the tree
+     * @return whether the target value was found
+     */
     boolean search(int target, Node node) {
         // make sure end of branch hasn't been reached
         if (node != null) {
@@ -116,6 +166,9 @@ public class BinarySearchTree {
         return false;
     }
 
+    /**
+     * Prints the tree
+     */
     void print() {
 
         int level = 0;
@@ -133,6 +186,11 @@ public class BinarySearchTree {
         }
     }
 
+    /** HELPER METHOD
+     * Recursively prints the tree
+     * @param node current node (recursion)
+     * @param level current level (recursion)
+     */
     void print(Node node, int level) {
         // print
         System.out.println();
@@ -153,33 +211,9 @@ public class BinarySearchTree {
 
     }
 
-    int size(Node ... accum) {
-        int count;
-        Node iterator = null;
-
-        // default to root
-        if (accum.length != 1) {
-            count = 0;
-            iterator = root;
-        }
-        // iterate down with recursive calls
-        if (accum.length == 1) {
-            iterator = accum[0];
-        }
-        // base case (iterator is not a node)
-        if (iterator == null) {
-            return 0;
-        }
-        // increment case (iterator is a leaf)
-        else if (iterator != null && iterator.left == null && iterator.right == null) {
-            return 1;
-        }
-        // recursive call (iterator is a branch)
-        else {
-            return 1 + size(iterator.left) + size(iterator.right);
-        }
-    }
-
+    /**
+     * A Node of a Binary Tree
+     */
     private class Node {
         Node left;
         Node right;
@@ -190,5 +224,6 @@ public class BinarySearchTree {
         }
     }
 }
+
 
 
