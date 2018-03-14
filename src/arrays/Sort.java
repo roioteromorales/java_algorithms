@@ -10,12 +10,14 @@ public class Sort {
      */
     public static <N extends Number> N[] bubbleSort(N[] array) {
 
+        long startTime = System.nanoTime();
+
         if (array.length < 2) {
             return array;
         }
 
         // iterate through array
-        for (int i = 0; i < array.length; i++)
+        for (int i = 0; i < array.length; i++) {
             // iterate through unsorted array
             for (int j = 0; j < array.length - i - 1; j++) {
                 // check if a pair is in the incorrect order
@@ -26,6 +28,9 @@ public class Sort {
                     array[j] = temp;
                 }
             }
+        }
+
+        System.out.println("Time: " + (System.nanoTime() - startTime));
 
         return array;
     }
@@ -148,6 +153,8 @@ public class Sort {
      */
     public static <N extends Number> N[] quickSort(N[] array, int ... boundaries) {
 
+        long startTime = System.nanoTime();
+
         // start sorting algorithm
         if (boundaries.length < 2) {
             return quickSort(array,0,array.length - 1);
@@ -198,6 +205,8 @@ public class Sort {
         if (boundaries[1] > left) {
             quickSort(array, left, boundaries[1]);
         }
+
+        System.out.println("Time: " + (System.nanoTime() - startTime));
 
         return array;
     }

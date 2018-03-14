@@ -1,7 +1,7 @@
 package arrays;
 
 public class ArrayTester {
-    public static final int SIZE = 10;
+    public static final int SIZE = 1000000;
     public static final int MIN = 0;
     public static final int MAX = 100;
 
@@ -24,27 +24,27 @@ public class ArrayTester {
         }
 
         // test search
-        int target = 5;
-        System.out.println("LinearSearch: " + target + " " + Search.linearSearch(dataSorted, target));
-        System.out.println("BinarySearch: " + target + " " + Search.binarySearch(dataSorted, target));
-        System.out.println("BinaryNonRecursiveSearch: " + target + " " + Search.binaryNonRecursiveSearch(dataSorted, target));
-
-        System.out.println();
-
-        target = 1500;
-        System.out.println("LinearSearch: " + target + " " + Search.linearSearch(dataSorted, target));
-        System.out.println("BinarySearch: " + target + " " + Search.binarySearch(dataSorted, target));
-        System.out.println("BinaryNonRecursiveSearch: " + target + " " + Search.binaryNonRecursiveSearch(dataSorted, target));
+//        int target = 5;
+//        System.out.println("LinearSearch: " + target + " " + Search.linearSearch(dataSorted, target));
+//        System.out.println("BinarySearch: " + target + " " + Search.binarySearch(dataSorted, target));
+//        System.out.println("BinaryNonRecursiveSearch: " + target + " " + Search.binaryNonRecursiveSearch(dataSorted, target));
+//
+//        System.out.println();
+//
+//        target = 1500;
+//        System.out.println("LinearSearch: " + target + " " + Search.linearSearch(dataSorted, target));
+//        System.out.println("BinarySearch: " + target + " " + Search.binarySearch(dataSorted, target));
+//        System.out.println("BinaryNonRecursiveSearch: " + target + " " + Search.binaryNonRecursiveSearch(dataSorted, target));
 
 
         // test sort
         System.out.println("\nSORT");
 
         System.out.println("\nOriginal: ");
-        printArray(dataUnsorted);
+        //printArray(dataUnsorted);
 
         System.out.println("\n\nSorted: ");
-        printArray(Sort.quickSort(dataUnsorted));
+        Sort.bubbleSort(dataUnsorted);
 
     }
 
