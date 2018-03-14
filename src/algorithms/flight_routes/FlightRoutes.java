@@ -1,4 +1,4 @@
-package graphs;
+package algorithms.flight_routes;
 
 import data_structures.hashmaps.HashMap;
 import data_structures.lists.SingleLinkedList;
@@ -95,7 +95,7 @@ public class FlightRoutes {
 
     private static void loadAirports() {
         // read csv
-        try (BufferedReader fin = new BufferedReader(new FileReader("src/graphs/airports.csv"))) {
+        try (BufferedReader fin = new BufferedReader(new FileReader("src/algorithms/flight_routes/airports.csv"))) {
 
             String line;
 
@@ -122,7 +122,7 @@ public class FlightRoutes {
 
     private static void loadRoutes() {
         // read csv
-        try (BufferedReader fin = new BufferedReader(new FileReader("src/graphs/routes.csv"))) {
+        try (BufferedReader fin = new BufferedReader(new FileReader("src/algorithms/flight_routes/routes.csv"))) {
 
             String line;
 

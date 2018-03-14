@@ -1,4 +1,6 @@
-package arrays;
+package algorithms;
+
+import algorithms.Sort;
 
 public class ArrayTester {
     public static final int SIZE = 1000000;

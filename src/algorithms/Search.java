@@ -1,4 +1,4 @@
-package arrays;
+package algorithms;
 
 public class Search {
 

@@ -1,4 +1,4 @@
-package miscellaneous;
+package algorithms;
 
 public class CreditCardValidator {
 

@@ -1,4 +1,4 @@
-package cryptography;
+package algorithms.caesar;
 
 import java.io.*;
 
@@ -6,8 +6,8 @@ public class Caesar {
     public static void main(String[] args) {
 
         // test caesar cipher
-        String unencryptedPath = "src/cryptography/.unencrypted.txt";
-        String encryptedPath = "src/cryptography/.encrypted.txt";
+        String unencryptedPath = "src/algorithms/caesar/.unencrypted.txt";
+        String encryptedPath = "src/algorithms/caesar/.encrypted.txt";
         int key = 13;
 
         // read plaintext

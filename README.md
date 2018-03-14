@@ -1,7 +1,6 @@
 
 
-This repository is for practicing algorithms and working with data structures in Java. Shout out to
-[Harvard's CS50](https://cs50.harvard.edu/) and *Grokking Algorithms* for many of these program prompts.
+This repository is for practicing algorithms and working with data structures in Java.
 
 # Algorithms
 
@@ -21,8 +20,6 @@ the last position of the sorted portion of the array.
 - **merge sort -** a divide and conquer algorithm that focuses on combining arrays that were presorted using recursion.
 - **quick sort -** another divide and conquer algorithm that focuses on recursively choosing pivot points and swapping
 elements so that smaller elements are left of the pivot point and larger elements are to the right.
-
-Every method can work with Objects that extend Number. You can test by running *ArrayTester.java*.
 
 **ThreadedSearch.java** splits linear search into multiple threads for a faster runtime.
 

@@ -1,4 +1,4 @@
-package arrays;
+package algorithms;
 
 import java.util.concurrent.*;
 

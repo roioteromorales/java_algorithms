@@ -1,4 +1,4 @@
-package graphs;
+package algorithms;
 
 import data_structures.lists.Queue;
 import java.io.File;

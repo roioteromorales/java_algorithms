@@ -11,8 +11,8 @@ public class SpellChecker {
 
     public static void main(String[] args) {
 
-        String dictPath = "src/trees/trie/dictionary.txt";
-        String novelPath = "src/trees/trie/austinpowers.txt";
+        String dictPath = "src/data_structures/trie/dictionary.txt";
+        String novelPath = "src/data_structures/trie/austinpowers.txt";
 
         // load dictionary into try
         dict = new Trie();
