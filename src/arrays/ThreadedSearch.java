@@ -3,7 +3,7 @@ package arrays;
 import java.util.concurrent.*;
 
 public class ThreadedSearch {
-    public static final int SIZE = 15000;
+    private static final int SIZE = 15000000; // 15 million
 
     public static void main(String[] args) {
 
@@ -16,10 +16,10 @@ public class ThreadedSearch {
 
         // test threaded search
         search(numArr, 0);     // Not Found
-        search(numArr, 3000);  // Found in 1/3
-        search(numArr, 8000);  // Found in 2/3
-        search(numArr, 12000); // Found in 3/3
-        search(numArr, 20000); // Not Found
+        search(numArr, 3000000);  // Found in 1/3
+        search(numArr, 8000000);  // Found in 2/3
+        search(numArr, 12000000); // Found in 3/3
+        search(numArr, 20000000); // Not Found
 
     }
 
@@ -36,9 +36,10 @@ public class ThreadedSearch {
 
             // split search into separate tasks
             int taskSize = data.length / 3;
-            SearchTask task1 = new SearchTask(data, target, 0, taskSize);
-            SearchTask task2 = new SearchTask(data, target, taskSize, taskSize * 2);
-            SearchTask task3 = new SearchTask(data, target, taskSize * 2, taskSize * 3);
+            ThreadedSearch selfReference = new ThreadedSearch();
+            SearchTask task1 = selfReference.new SearchTask(data, target, 0, taskSize);
+            SearchTask task2 = selfReference.new SearchTask(data, target, taskSize, taskSize * 2);
+            SearchTask task3 = selfReference.new SearchTask(data, target, taskSize * 2, taskSize * 3);
 
             // run tasks
             ExecutorService service = Executors.newFixedThreadPool(3);
@@ -70,13 +71,13 @@ public class ThreadedSearch {
                 System.out.println("...not found.");
             }
 
-            long elapsedTime = (System.nanoTime() - startTime);
-            System.out.println("Time: " + elapsedTime + " nanoseconds.");
+            long elapsedTime = (System.nanoTime() - startTime) / 1000000;
+            System.out.println("Time: " + elapsedTime + " milliseconds.");
 
              // shutdown threading
             service.shutdown();
 
-            // return if found in any task
+            // return true if found in any task
             return result1 || result2 || result3;
 
         } catch (InterruptedException ex1) {
@@ -89,31 +90,33 @@ public class ThreadedSearch {
             return false;
         }
     }
-}
 
-/**
- * SearchTask searches chunks of data given to it for the target
- */
-class SearchTask implements Callable<Boolean> {
-    private int[] data;
-    private int target;
-    private int left;
-    private int right;
+    /**
+     * SearchTask searches chunks of data given to it for the target
+     */
+    private class SearchTask implements Callable<Boolean> {
+        private int[] data;
+        private int target;
+        private int left;
+        private int right;
 
-    SearchTask(int[] data, int target, int left, int right) {
-        this.data = data;
-        this.target = target;
-        this.left = left;
-        this.right = right;
-    }
-
-    public Boolean call() {
-        // search data within boundaries
-        for (int i = left; i < right; i++) {
-            if (data[i] == target) {
-                return true;
-            }
+        SearchTask(int[] data, int target, int left, int right) {
+            this.data = data;
+            this.target = target;
+            this.left = left;
+            this.right = right;
         }
-        return false;
+
+        public Boolean call() {
+            // search data within boundaries
+            for (int i = left; i < right; i++) {
+                if (data[i] == target) {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }
+
+

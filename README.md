@@ -24,6 +24,8 @@ elements so that smaller elements are left of the pivot point and larger element
 
 Every method can work with Objects that extend Number. You can test by running *ArrayTester.java*.
 
+**ThreadedSearch.java** splits linear search into multiple threads for a faster runtime.
+
 ## Cryptography
 
 **Caesar.java** is an implementation of [Caesar Cipher](https://en.wikipedia.org/wiki/Caesar_cipher). It can encrypt/decrypt a string by passing
@@ -60,10 +62,10 @@ This is used for collisions in the Hash Map implementation (see [Hashmaps](https
 single linked list by implementing a reference to the previous node in addition to the next node.
 
 **Stack.java** is an implementation of a [generic stack](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)), which is
-a special list that utilizes a First-In-First-Out methodology.
+a special list that utilizes a Last-In-First-Out methodology.
 
 **Queue.java** is an implementation of a [generic queue](https://en.wikipedia.org/wiki/Queue_(abstract_data_type)). which is
-a special list that utilizes a Last-In-First-Out methodology.
+a special list that utilizes a First-In-First-Out methodology.
 
 ## Miscellaneous
 
