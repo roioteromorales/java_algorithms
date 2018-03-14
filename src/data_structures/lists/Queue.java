@@ -1,4 +1,4 @@
-package lists;
+package data_structures.lists;
 
 public class Queue<V> {
     private SingleLinkedList<V> list = new SingleLinkedList<>();

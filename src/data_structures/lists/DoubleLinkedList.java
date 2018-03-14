@@ -1,4 +1,4 @@
-package lists;
+package data_structures.lists;
 
 public class DoubleLinkedList<T> {
     private Node start;

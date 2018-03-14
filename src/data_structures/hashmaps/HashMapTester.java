@@ -1,4 +1,4 @@
-package hashmaps;
+package data_structures.hashmaps;
 
 public class HashMapTester {
 

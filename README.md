@@ -1,9 +1,9 @@
-# Java Algorithms & Data Structures
+
 
 This repository is for practicing algorithms and working with data structures in Java. Shout out to
 [Harvard's CS50](https://cs50.harvard.edu/) and *Grokking Algorithms* for many of these program prompts.
 
-## Arrays
+# Algorithms
 
 **Search.java** includes implementations of:
 - **linear search -** an inefficient (stupid search) algorithm that simply iterates from beginning to end until
@@ -26,12 +26,8 @@ Every method can work with Objects that extend Number. You can test by running *
 
 **ThreadedSearch.java** splits linear search into multiple threads for a faster runtime.
 
-## Cryptography
-
 **Caesar.java** is an implementation of [Caesar Cipher](https://en.wikipedia.org/wiki/Caesar_cipher). It can encrypt/decrypt a string by passing
 it to the *crypt method* with a key (negative key for decryption). Each character of the plaintext is shifted by the key.
-
-## Graphs
 
 **FileCrawler.java** uses [Breadth First Search (BFS)](https://en.wikipedia.org/wiki/Breadth-first_search) to find the
 filepath in the subdirectory of several different starting points. BFS uses a Queue (see [Lists](https://github.com/kevgraham/java_algorithms#lists))
@@ -44,16 +40,20 @@ The airport data is loaded from *airports.csv* into a hashmap (see [Hash Maps](h
 which is used to retrieve the latitude and longitude when calculating route distances for the routes in *routes.cvs*. For the algorithm,
 Airports are nodes and Routes are edges.
 
-## Hash Maps
+**CreditCardValidator.java** has a *validate method* that returns a String indicating if the given number is AMEX, MASTERCARD,
+VISA or INVALID. The algorithm checks the leading digits for the card type and uses the [Luhn Algorithm](https://en.wikipedia.org/wiki/Luhn_algorithm) to
+ensure the credit card number is valid.
+
+# Data Structures
+
+**BinarySearchTree.java** is an integer implementation of a sorted [Binary Search Tree (BST)](https://en.wikipedia.org/wiki/Binary_search_tree).
+A binary tree starts from a root node, and has references to left and right child nodes. A BST is a binary tree that
+requires the right child node to be greater than the left. You can test by running *BinaryTreeTester.java*.
 
 **HashMap.java** is an implementation for a generic hashmap that uses an internal array, a simple *hash method* based on
 the first character of the key and a **Single Linked List** (see [Lists](https://github.com/kevgraham/java_algorithms#lists))
 for collisions. A private inner class called *Pair* is used to store two pieces of data within a linked list node.
 You can test by running *HashMapTester.java*.
-
-## Lists
-A [Linked List](https://en.wikipedia.org/wiki/Linked_list) is a linear data structure made up of a
-collection of nodes, with one pointing to the next in sequence.
 
 **SingleLinkedList.java** is an implementation of generic single linked lists, with each node only references the next node.
 This is used for collisions in the Hash Map implementation (see [Hashmaps](https://github.com/kevgraham/java_algorithms#hash-maps)).
@@ -66,18 +66,6 @@ a special list that utilizes a Last-In-First-Out methodology.
 
 **Queue.java** is an implementation of a [generic queue](https://en.wikipedia.org/wiki/Queue_(abstract_data_type)). which is
 a special list that utilizes a First-In-First-Out methodology.
-
-## Miscellaneous
-
-**CreditCardValidator.java** has a *validate method* that returns a String indicating if the given number is AMEX, MASTERCARD,
-VISA or INVALID. The algorithm checks the leading digits for the card type and uses the [Luhn Algorithm](https://en.wikipedia.org/wiki/Luhn_algorithm) to
-ensure the credit card number is valid.
-
-## Trees
-
-**BinarySearchTree.java** is an integer implementation of a sorted [Binary Search Tree (BST)](https://en.wikipedia.org/wiki/Binary_search_tree).
-A binary tree starts from a root node, and has references to left and right child nodes. A BST is a binary tree that
-requires the right child node to be greater than the left. You can test by running *BinaryTreeTester.java*.
 
 **Trie.java** is a case-insensitive implementation of a [Trie](https://en.wikipedia.org/wiki/Trie). Each node of the trie has an array
 of children representing the chars A-Z and the apostrophe char. A String is represented in the Trie with each char being a node,

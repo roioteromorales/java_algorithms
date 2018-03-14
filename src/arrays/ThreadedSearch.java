@@ -3,7 +3,8 @@ package arrays;
 import java.util.concurrent.*;
 
 public class ThreadedSearch {
-    private static final int SIZE = 15000000; // 15 million
+    private static final int MILLION = 1000000; //
+    private static final int SIZE = 150 * MILLION; // 150 million
 
     public static void main(String[] args) {
 
@@ -15,11 +16,11 @@ public class ThreadedSearch {
         }
 
         // test threaded search
-        search(numArr, 0);     // Not Found
-        search(numArr, 3000000);  // Found in 1/3
-        search(numArr, 8000000);  // Found in 2/3
-        search(numArr, 12000000); // Found in 3/3
-        search(numArr, 20000000); // Not Found
+        search(numArr, 0);        // Not Found
+        search(numArr, 3050000);  // Found
+        search(numArr, 8050000);  // Found
+        search(numArr, 12050000); // Found
+        search(numArr, 25000000); // Not Found
 
     }
 
@@ -34,51 +35,65 @@ public class ThreadedSearch {
             // time search
             long startTime = System.nanoTime();
 
-            // split search into separate tasks
-            int taskSize = data.length / 3;
+            // split search into separate tasks less than 1 Million items
+            int tasks = (data.length / MILLION);
+            if (tasks == 0) { tasks++; } // ensure there is at least one thread
+
+            int taskSize = data.length / tasks;
+
+            // instantiate outer class so that inner class can be instantiated
             ThreadedSearch selfReference = new ThreadedSearch();
-            SearchTask task1 = selfReference.new SearchTask(data, target, 0, taskSize);
-            SearchTask task2 = selfReference.new SearchTask(data, target, taskSize, taskSize * 2);
-            SearchTask task3 = selfReference.new SearchTask(data, target, taskSize * 2, taskSize * 3);
+
+            // create tasks
+            SearchTask[] taskArray = new SearchTask[tasks];
+            for (int i = 0; i < tasks; i++) {
+                int left = i * taskSize;
+                int right = (i * taskSize) + taskSize;
+                taskArray[i] = selfReference.new SearchTask(data, target, left, right);
+
+                //System.out.println("Task " + (i + 1) + ": " + (left / MILLION) + " million to "
+                //                   + (right / MILLION) + " million");
+            }
 
             // run tasks
             ExecutorService service = Executors.newFixedThreadPool(3);
-            Future<Boolean> future1 = service.submit(task1);
-            Future<Boolean> future2 = service.submit(task2);
-            Future<Boolean> future3 = service.submit(task3);
+            Future[] futureArray = new Future[tasks];
+            for (int i = 0; i < tasks; i++) {
+                futureArray[i] = service.submit(taskArray[i]);
+            }
 
             // determine results
-            boolean result1 = future1.get();
-            boolean result2 = future2.get();
-            boolean result3 = future3.get();
-
-            // print results
             System.out.print("\nSearching for " + target);
 
-            if (result1) {
-                System.out.println("...found in 1/3.");
+            boolean found = false;
+
+            for (int i = 0; i < tasks; i++) {
+                // pull in result when thread is finished
+                boolean result = (boolean)futureArray[i].get();
+
+                // target found
+                if (result) {
+                    found = true;
+                    System.out.println("...found at " + ((i * taskSize) / MILLION) + " million to "
+                                       + (((i * taskSize) + taskSize) / MILLION) + " million.");
+                }
             }
 
-            if (result2) {
-                System.out.println("...found in 2/3.");
-            }
-
-            if (result3) {
-                System.out.println("...found in 3/3.");
-            }
-
-            if (!result1 && !result2 && !result3) {
+            // target not found
+            if(!found) {
                 System.out.println("...not found.");
             }
 
+            // print time
             long elapsedTime = (System.nanoTime() - startTime) / 1000000;
             System.out.println("Time: " + elapsedTime + " milliseconds.");
+            System.out.println("------------------------------------------\n");
 
              // shutdown threading
             service.shutdown();
 
-            // return true if found in any task
-            return result1 || result2 || result3;
+            // return boolean result
+            return found;
 
         } catch (InterruptedException ex1) {
             System.out.println("Search Failed.");

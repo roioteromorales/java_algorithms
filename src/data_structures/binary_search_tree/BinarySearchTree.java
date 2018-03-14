@@ -1,4 +1,4 @@
-package trees;
+package data_structures.binary_search_tree;
 
 public class BinarySearchTree {
     Node root;

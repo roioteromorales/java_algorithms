@@ -1,4 +1,6 @@
-package lists;
+package data_structures.lists;
+
+import data_structures.lists.SingleLinkedList;
 
 public class Stack<V> {
     private SingleLinkedList<V> list = new SingleLinkedList<>();

@@ -1,6 +1,6 @@
-package hashmaps;
+package data_structures.hashmaps;
 
-import lists.SingleLinkedList;
+import data_structures.lists.SingleLinkedList;
 
 public class HashMap<V> {
     private SingleLinkedList<Pair>[] table = new SingleLinkedList[26];

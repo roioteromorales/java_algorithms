@@ -1,7 +1,7 @@
 package graphs;
 
-import hashmaps.HashMap;
-import lists.SingleLinkedList;
+import data_structures.hashmaps.HashMap;
+import data_structures.lists.SingleLinkedList;
 import java.io.BufferedReader;
 import java.io.FileReader;
 

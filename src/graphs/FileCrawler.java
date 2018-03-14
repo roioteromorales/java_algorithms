@@ -1,6 +1,6 @@
 package graphs;
 
-import lists.Queue;
+import data_structures.lists.Queue;
 import java.io.File;
 
 public class FileCrawler {

@@ -1,4 +1,4 @@
-package lists;
+package data_structures.lists;
 
 public class SingleLinkedList<T> {
     private Node start;

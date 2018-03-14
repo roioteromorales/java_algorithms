@@ -1,4 +1,4 @@
-package trees;
+package data_structures.trie;
 
 public class Trie {
     private Node root = new Node();

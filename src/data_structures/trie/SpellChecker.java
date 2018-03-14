@@ -1,4 +1,4 @@
-package trees;
+package data_structures.trie;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -11,8 +11,8 @@ public class SpellChecker {
 
     public static void main(String[] args) {
 
-        String dictPath = "src/trees/dictionary.txt";
-        String novelPath = "src/trees/austinpowers.txt";
+        String dictPath = "src/trees/trie/dictionary.txt";
+        String novelPath = "src/trees/trie/austinpowers.txt";
 
         // load dictionary into try
         dict = new Trie();
