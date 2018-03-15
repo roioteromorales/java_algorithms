@@ -5,11 +5,10 @@ This repository is for practicing algorithms and working with data structures in
 # Algorithms
 
 **Search.java** includes implementations of:
-- **linear search -** an inefficient (stupid search) algorithm that simply iterates from beginning to end until
-the element is found.
 - **binary search (recursive) -** an algorithm that recursively divides the search in half until the element is found.
 - **binary search (non-recursive) -** an algorithm that searches an array by continuing to narrow the search boundaries by half
 until the element is found.
+- **parallel search -** the linear search algorithm split into chunks run on multiple threads.
 
 **Sort.java** includes implementations of:
 - **bubble sort -** a comparison-based algorithm that iteratively swaps pairs of elements until the array is sorted.
@@ -20,8 +19,6 @@ the last position of the sorted portion of the array.
 - **merge sort -** a divide and conquer algorithm that focuses on combining arrays that were presorted using recursion.
 - **quick sort -** another divide and conquer algorithm that focuses on recursively choosing pivot points and swapping
 elements so that smaller elements are left of the pivot point and larger elements are to the right.
-
-**ThreadedSearch.java** splits linear search into multiple threads for a faster runtime.
 
 **Caesar.java** is an implementation of [Caesar Cipher](https://en.wikipedia.org/wiki/Caesar_cipher). It can encrypt/decrypt a string by passing
 it to the *crypt method* with a key (negative key for decryption). Each character of the plaintext is shifted by the key.
