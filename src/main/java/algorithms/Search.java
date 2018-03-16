@@ -147,7 +147,7 @@ public class Search {
 
             // run tasks
             ExecutorService service = Executors.newFixedThreadPool(3);
-            Future[] futureArray = new Future[tasks];
+            Future<Boolean>[] futureArray = new Future[tasks];
             for (int i = 0; i < tasks; i++) {
                 futureArray[i] = service.submit(taskArray[i]);
             }
@@ -157,7 +157,7 @@ public class Search {
 
             for (int i = 0; i < tasks; i++) {
                 // pull in result when thread is finished
-                boolean result = (boolean)futureArray[i].get();
+                boolean result = futureArray[i].get();
 
                 // target found
                 if (result) {
