@@ -1,12 +1,10 @@
-
 import algorithms.Search;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 public class SearchTest {
-    private static final int MILLION = 1000000; //
-    private static final int SIZE = 150 * MILLION; // 150 million
+    private static final int SIZE = 150000000; // 150 million
 
     @Test
     void testBinarySearch() {
