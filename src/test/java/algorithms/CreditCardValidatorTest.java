@@ -5,7 +5,7 @@ import org.junit.Test;
 import static junit.framework.Assert.assertEquals;
 
 public class CreditCardValidatorTest {
-    
+
     @Test
     public void testAMEX() {
         assertEquals(CreditCardValidator.validate(378282246310005l), "AMEX");
