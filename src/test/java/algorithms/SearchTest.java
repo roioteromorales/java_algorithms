@@ -9,7 +9,7 @@ public class SearchTest {
     private static final int SIZE = 150000000; // 150 million
 
     @Test
-    void testBinarySearch() {
+    public void testBinarySearch() {
         // generate data from 1 to SIZE
         int[] numArr = new int[SIZE];
         for (int i = 0; i < SIZE; i++) {

@@ -10,7 +10,7 @@ public class SortTest {
     public static final Number[] sorted = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
     @Test
-    void testBubbleSort() {
+    public void testBubbleSort() {
         assertEquals(Sort.bubbleSort(unsorted), sorted);
     }
 }
