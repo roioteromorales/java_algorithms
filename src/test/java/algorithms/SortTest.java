@@ -1,9 +1,7 @@
 package algorithms;
-
-import algorithms.Sort;
 import org.junit.Test;
 
-import static junit.framework.Assert.assertEquals;
+import static org.junit.Assert.assertArrayEquals;
 
 public class SortTest {
     public static final Number[] unsorted = {1, 5, 3, 7, 8, 4, 6, 10, 9, 2};
@@ -11,6 +9,26 @@ public class SortTest {
 
     @Test
     public void testBubbleSort() {
-        assertEquals(Sort.bubbleSort(unsorted), sorted);
+        assertArrayEquals(Sort.bubbleSort(unsorted), sorted);
+    }
+
+    @Test
+    public void testInsertionSort() {
+        assertArrayEquals(Sort.insertionSort(unsorted), sorted);
+    }
+
+    @Test
+    public void testSelectionSort() {
+        assertArrayEquals(Sort.selectionSort(unsorted), sorted);
+    }
+
+    @Test
+    public void testMergeSort() {
+        assertArrayEquals(Sort.mergeSort(unsorted), sorted);
+    }
+
+    @Test
+    public void testQuickSort() {
+        assertArrayEquals(Sort.quickSort(unsorted), sorted);
     }
 }
