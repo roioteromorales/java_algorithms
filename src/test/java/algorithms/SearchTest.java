@@ -1,3 +1,5 @@
+package algorithms;
+
 import algorithms.Search;
 import org.junit.Test;
 
