@@ -2,19 +2,6 @@ package algorithms;
 
 public class CreditCardValidator {
 
-    public static void main(String[] args) {
-
-        System.out.println("Test: " + validate(378282246310005l));    // Output: AMEX
-        System.out.println("Test: " + validate(6176292929l));         // Output: INVALID
-        System.out.println("Test: " + validate(371449635398431l));    // Output: AMEX
-        System.out.println("Test: " + validate(378734493671000l));    // Output: AMEX
-        System.out.println("Test: " + validate(5105105105105100l));   // Output: MASTERCARD
-        System.out.println("Test: " + validate(4012888888881881l));   // Output: VISA
-        System.out.println("Test: " + validate(4111111111111111l));   // Output: VISA
-
-    }
-
-
     /**
      * Determines whether a given Credit Card Number is valid
      * @param cc_number as a long with no dashes

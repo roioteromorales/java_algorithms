@@ -30,7 +30,7 @@ public class Sort {
             }
         }
 
-        System.out.println("Time: " + (System.nanoTime() - startTime));
+        System.out.println("\nTime: " + (System.nanoTime() - startTime));
 
         return array;
     }
@@ -42,6 +42,12 @@ public class Sort {
      * @return the sorted array
      */
     public static <N extends Number> N[] insertionSort(N[] array) {
+
+        long startTime = System.nanoTime();
+
+        if (array.length < 2) {
+            return array;
+        }
 
         // iterate through original array
         for (int i = 1; i < array.length; i++) {
@@ -58,6 +64,8 @@ public class Sort {
             array[j + 1] = num;
         }
 
+        System.out.println("\nTime: " + (System.nanoTime() - startTime));
+
         return array;
     }
 
@@ -68,6 +76,13 @@ public class Sort {
      * @return the sorted array
      */
     public static <N extends Number> N[] selectionSort(N[] array) {
+
+        long startTime = System.nanoTime();
+
+        if (array.length < 2) {
+            return array;
+        }
+
         int sorted = 0;
 
         // iterate until array is sorted
@@ -87,6 +102,8 @@ public class Sort {
             sorted ++;
         }
 
+        System.out.println("\nTime: " + (System.nanoTime() - startTime));
+
         return array;
     }
 
@@ -97,6 +114,12 @@ public class Sort {
      * @return the sorted array
      */
     public static <N extends Number> N[] mergeSort(N[] array) {
+
+        long startTime = System.nanoTime();
+
+        if (array.length < 2) {
+            return array;
+        }
 
         if (array.length > 1) {
 
@@ -140,6 +163,8 @@ public class Sort {
             }
         }
 
+        System.out.println("\nTime: " + (System.nanoTime() - startTime));
+
         return array;
     }
 
@@ -154,6 +179,10 @@ public class Sort {
     public static <N extends Number> N[] quickSort(N[] array, int ... boundaries) {
 
         long startTime = System.nanoTime();
+
+        if (array.length < 2) {
+            return array;
+        }
 
         // start sorting algorithm
         if (boundaries.length < 2) {
@@ -206,7 +235,7 @@ public class Sort {
             quickSort(array, left, boundaries[1]);
         }
 
-        System.out.println("Time: " + (System.nanoTime() - startTime));
+        System.out.println("\nTime: " + (System.nanoTime() - startTime));
 
         return array;
     }

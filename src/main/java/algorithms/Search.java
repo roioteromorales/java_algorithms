@@ -4,30 +4,8 @@ import java.util.concurrent.*;
 
 public class Search {
 
-    private static final int MILLION = 1000000; //
-    private static final int SIZE = 150 * MILLION; // 150 million
-
     private static long startTime;
     private static long count;
-
-
-    public static void main(String[] args) {
-
-        // generate data from 1 to SIZE
-        int[] numArr = new int[SIZE];
-        for (int i = 0; i < SIZE; i++) {
-            numArr[i] = i + 1;
-        }
-
-        int[] testCases = {0, 30500000, 80500000, 120500000, 250000000}; // Output: False, True, True, True, False
-
-        for (int target : testCases) {
-            binarySearch(numArr, target);
-            parallelSearch(numArr, target);
-            System.out.println("\n-------------------------------------");
-        }
-
-    }
 
     /**
      * Searches through the array using Binary Search Recursively
@@ -127,44 +105,45 @@ public class Search {
             startTime = System.nanoTime();
             count = 0;
 
-            // split search into 300 separate tasks
-            int tasks = 300;
+            // split search into separate tasks
+            int tasks = 1000;
             int taskSize = data.length / tasks;
 
             // instantiate outer class so that inner class can be instantiated
             Search selfReference = new Search();
 
-            // create tasks
+            // completion service to run tasks and return results
+            ExecutorService service = Executors.newFixedThreadPool(tasks);
+            CompletionService<Boolean> threads = new ExecutorCompletionService<>(service);
+
+            // build array of tasks
             SearchTask[] taskArray = new SearchTask[tasks];
             for (int i = 0; i < tasks; i++) {
+                // determine boundaries
                 int left = i * taskSize;
                 int right = (i * taskSize) + taskSize;
+
+                // create task
                 taskArray[i] = selfReference.new SearchTask(data, target, left, right);
 
-                //System.out.println("Task " + (i + 1) + ": " + (left / MILLION) + " million to "
-                //                   + (right / MILLION) + " million");
-            }
-
-            // run tasks
-            ExecutorService service = Executors.newFixedThreadPool(3);
-            Future<Boolean>[] futureArray = new Future[tasks];
-            for (int i = 0; i < tasks; i++) {
-                futureArray[i] = service.submit(taskArray[i]);
+                // start thread
+                threads.submit(taskArray[i]);
             }
 
             // determine results
             System.out.print("\nParallel Searching for " + target);
 
             for (int i = 0; i < tasks; i++) {
+
                 // pull in result when thread is finished
-                boolean result = futureArray[i].get();
+                boolean result = threads.take().get();
 
                 // target found
                 if (result) {
                     // print result
                     System.out.println("...found after " + count + " steps.");
                     long elapsedTime = (System.nanoTime() - startTime);
-                    System.out.println("Time: " + elapsedTime + " nanoseconds.");
+                    System.out.println("Time: " + elapsedTime + " nanoseconds. (Threads checked: " + i + ")");
 
                     // shutdown threading
                     service.shutdown();
@@ -173,10 +152,11 @@ public class Search {
             }
 
             // target not found
-            System.out.println("...not found.");
+            System.out.println("...not found after " + count + " steps.");
             long elapsedTime = (System.nanoTime() - startTime);
-            System.out.println("Time: " + elapsedTime + " nanoseconds.");
+            System.out.println("Time: " + elapsedTime + " nanoseconds. (Threads checked: " + tasks + ")");
 
+            // shutdown threading
             service.shutdown();
             return false;
 
