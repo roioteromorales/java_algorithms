@@ -1,4 +1,4 @@
-package data_structures.binary_search_tree;
+package data_structures;
 
 public class BinarySearchTree {
     Node root;
@@ -60,6 +60,11 @@ public class BinarySearchTree {
      * @param target value to be removed
      */
     public void remove(int target) {
+        // make sure node exists
+        if (!search(target)) {
+            return;
+        }
+
         remove(target, root);
     }
 
