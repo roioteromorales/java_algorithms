@@ -9,26 +9,26 @@ public class SortTest {
 
     @Test
     public void testBubbleSort() {
-        assertArrayEquals(Sort.bubbleSort(unsorted), sorted);
+        assertArrayEquals(sorted, Sort.bubbleSort(unsorted));
     }
 
     @Test
     public void testInsertionSort() {
-        assertArrayEquals(Sort.insertionSort(unsorted), sorted);
+        assertArrayEquals(sorted, Sort.insertionSort(unsorted));
     }
 
     @Test
     public void testSelectionSort() {
-        assertArrayEquals(Sort.selectionSort(unsorted), sorted);
+        assertArrayEquals(sorted, Sort.selectionSort(unsorted));
     }
 
     @Test
     public void testMergeSort() {
-        assertArrayEquals(Sort.mergeSort(unsorted), sorted);
+        assertArrayEquals(sorted, Sort.mergeSort(unsorted));
     }
 
     @Test
     public void testQuickSort() {
-        assertArrayEquals(Sort.quickSort(unsorted), sorted);
+        assertArrayEquals(sorted, Sort.quickSort(unsorted));
     }
 }

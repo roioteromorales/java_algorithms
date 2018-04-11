@@ -5,37 +5,31 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class SearchTest {
-    private static final int SIZE = 150000000; // 150 million
+    private static final int SIZE = 1500000; // 1.5 million
+    private int[] numArr = new int[SIZE];
 
-    @Test
-    public void testBinarySearch() {
+    public SearchTest() {
         // generate data from 1 to SIZE
-        int[] numArr = new int[SIZE];
         for (int i = 0; i < SIZE; i++) {
             numArr[i] = i + 1;
         }
+    }
 
-        // tests
-        assertEquals(Search.binarySearch(numArr, 0), false);
-        assertEquals(Search.binarySearch(numArr, 30500000), true);
-        assertEquals(Search.binarySearch(numArr, 80500000), true);
-        assertEquals(Search.binarySearch(numArr, 120500000), true);
-        assertEquals(Search.binarySearch(numArr, 250000000), false);
+    @Test
+    public void testBinarySearch() {
+        assertEquals(false, Search.binarySearch(numArr, 0));
+        assertEquals(true, Search.binarySearch(numArr, 305000));
+        assertEquals(true, Search.binarySearch(numArr, 805000));
+        assertEquals(true, Search.binarySearch(numArr, 1205000));
+        assertEquals(false, Search.binarySearch(numArr, 2500000));
     }
 
     @Test
     public void testParallelSearch() {
-        // generate data from 1 to SIZE
-        int[] numArr = new int[SIZE];
-        for (int i = 0; i < SIZE; i++) {
-            numArr[i] = i + 1;
-        }
-
-        //tests
-        assertEquals(Search.parallelSearch(numArr, 0), false);
-        assertEquals(Search.parallelSearch(numArr, 30500000), true);
-        assertEquals(Search.parallelSearch(numArr, 80500000), true);
-        assertEquals(Search.parallelSearch(numArr, 120500000), true);
-        assertEquals(Search.parallelSearch(numArr, 250000000), false);
+        assertEquals(false, Search.parallelSearch(numArr, 0));
+        assertEquals(true, Search.parallelSearch(numArr, 305000));
+        assertEquals(true, Search.parallelSearch(numArr, 805000));
+        assertEquals(true, Search.parallelSearch(numArr, 1205000));
+        assertEquals(false, Search.parallelSearch(numArr, 2500000));
     }
 }
