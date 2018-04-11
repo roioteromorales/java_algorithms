@@ -1,20 +1,20 @@
 package algorithms.flight_routes;
 
-import data_structures.hashmaps.HashMap;
+import data_structures.HashMap;
 import data_structures.lists.SingleLinkedList;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
 public class FlightRoutes {
-    private static HashMap<Airport> airports = new HashMap<>(); // stores airport data (Nodes)
+    private static HashMap<String, Airport> airports = new HashMap<>(); // stores airport data (Nodes)
 
     public static void main(String[] args) {
 
         // load airports into hashtable
-        loadAirports();
+        loadAirports("src/algorithms/flight_routes/airports.csv");
 
         // load route csv
-        loadRoutes();
+        loadRoutes("src/algorithms/flight_routes/routes.csv");
 
         System.out.println();
 
@@ -93,9 +93,9 @@ public class FlightRoutes {
         System.out.println("\n");
     }
 
-    private static void loadAirports() {
+    private static void loadAirports(String filePath) {
         // read csv
-        try (BufferedReader fin = new BufferedReader(new FileReader("src/algorithms/flight_routes/airports.csv"))) {
+        try (BufferedReader fin = new BufferedReader(new FileReader(filePath))) {
 
             String line;
 
@@ -120,9 +120,9 @@ public class FlightRoutes {
         }
     }
 
-    private static void loadRoutes() {
+    private static void loadRoutes(String filePath) {
         // read csv
-        try (BufferedReader fin = new BufferedReader(new FileReader("src/algorithms/flight_routes/routes.csv"))) {
+        try (BufferedReader fin = new BufferedReader(new FileReader(filePath))) {
 
             String line;
 
