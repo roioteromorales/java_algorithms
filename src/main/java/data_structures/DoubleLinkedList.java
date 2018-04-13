@@ -1,12 +1,15 @@
-package data_structures.lists;
+package data_structures;
 
-public class SingleLinkedList<T> {
+public class DoubleLinkedList<T> {
     private Node start;
 
-    public SingleLinkedList(T ... data) {
+    public DoubleLinkedList(T ... data) {
+        // no nodes
         if (data.length < 1) {
             start = null;
-        } else {
+        }
+        // convert parameters to nodes
+        else {
             for (int i = 0; i < data.length; i++) {
                 add(data[i]);
             }
@@ -14,7 +17,7 @@ public class SingleLinkedList<T> {
     }
 
     /**
-     * Adds a new Node the given data to the end of the list
+     * Adds a new Node the given value to the end of the list
      * @param data to be added
      */
     public void add(T data) {
@@ -22,77 +25,88 @@ public class SingleLinkedList<T> {
     }
 
     /**
-     * Inserts a new Node with the given data at the given index
+     * Inserts a Node with the given value at the given index
      * @param data to be added
-     * @param index to put the Node
+     * @param index to add the Node
      */
     public void insert(T data, int index) {
-        // create new root node
+        // create initial root node
         if (start == null) {
             start = new Node(data);
         } else {
-
             Node iterator = start;
             Node previous = null;
 
-            // insert new node in front
             if (index == 0) {
-                start = new Node(data, start);
+                start = new Node(data, start, null);
             }
             else if (index < size()) {
-                // iterate through list to find index
+                // iterator through list to find index
                 int count = 0;
-
                 while (count != index) {
+
                     previous = iterator;
                     iterator = iterator.next;
                     count++;
                 }
 
-                // create new node linked to previous node
-                previous.next = new Node(data, iterator);
+                // insert and relink
+                previous.next = new Node(data, iterator, previous);
+                iterator.prev = previous.next;
 
             }
             else {
-                // iterator through list to find last node
+                // iterate through list to end
                 while (iterator.next != null) {
+                    previous = iterator;
                     iterator = iterator.next;
                 }
+
+                // add node to end of list
                 iterator.next = new Node(data);
+                iterator.prev = previous;
             }
         }
     }
 
     /**
      * Removes the Node at the given index
-     * @param index to put the Node
+     * @param index to remove the Node
      */
     public void remove(int index) {
+
+
         if (index == 0) {
             start = start.next;
-        } else {
+        }
+        else {
             try {
-                int count = 0;
-                Node previous = null;
                 Node iterator = start;
+                Node previous = null;
 
-                // iterate until index is reached
+                // iterator through list to find index
+                int count = 0;
                 while (count != index) {
+
                     previous = iterator;
                     iterator = iterator.next;
                     count++;
                 }
 
-                // link previous node to the node after the current
+                // remove and relink
                 previous.next = iterator.next;
+                iterator.next.prev = previous;
+
             } catch (NullPointerException ex) {
                 System.out.println("invalid index");
             }
+
         }
+
     }
 
     /**
-     * Returns the value at the given index
+     * Returns the value at the give index
      * @param index to get the value
      * @return the value at the index
      */
@@ -109,7 +123,8 @@ public class SingleLinkedList<T> {
             return iterator.data;
 
         } catch (NullPointerException ex) {
-            return null; // list is empty
+            System.out.println("invalid index");
+            return null;
         }
     }
 
@@ -171,29 +186,24 @@ public class SingleLinkedList<T> {
         return output;
     }
 
-    public boolean isEmpty() {
-        return isEmpty();
-    }
-
     /**
      * A Node of a Linked List
      */
     private class Node {
         T data;
         Node next;
+        Node prev;
 
         public Node(T data) {
             this.data = data;
             this.next = null;
+            this.prev = null;
         }
 
-        public Node(T data, Node node) {
+        public Node(T data, Node next, Node prev) {
             this.data = data;
-            this.next = node;
-
+            this.next = next;
+            this.prev = prev;
         }
     }
-
 }
-
-

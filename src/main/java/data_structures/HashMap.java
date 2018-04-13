@@ -1,7 +1,5 @@
 package data_structures;
 
-import data_structures.lists.SingleLinkedList;
-
 public class HashMap<K, V> {
 
     private int INITIAL_SIZE = 10;

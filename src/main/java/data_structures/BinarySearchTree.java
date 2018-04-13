@@ -5,9 +5,12 @@ public class BinarySearchTree {
     int size;
 
     BinarySearchTree(int ... data) {
+        // initialize empty tree
         if (data.length < 1) {
             root = null;
-        } else {
+        }
+        // initialize tree with given data
+        else {
             for (int i = 0; i < data.length; i++) {
                 insert(data[i]);
             }
@@ -24,7 +27,7 @@ public class BinarySearchTree {
             root = new Node(data);
             size++;
         }
-        // start the recursive method
+        // start the recursive helper method
         else {
             insert(data, root);
         }
@@ -65,6 +68,7 @@ public class BinarySearchTree {
             return;
         }
 
+        // start the recursive helper method
         remove(target, root);
     }
 
