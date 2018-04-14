@@ -13,6 +13,7 @@ public class BinarySearchTree {
         else {
             for (int i = 0; i < data.length; i++) {
                 insert(data[i]);
+                System.out.println("inserted "  + data[i]);
             }
         }
     }
@@ -40,22 +41,110 @@ public class BinarySearchTree {
      * @return new node recursively
      */
     private Node insert(int data, Node node) {
-        // create new node
+        // create new root node
         if (node == null) {
             node = new Node(data);
             size++;
-        } else {
-            // move to left of tree
-            if (data <= node.data) {
-                node.left = insert(data, node.left);
-            }
-            // move to right of tree
-            else {
-                node.right = insert(data, node.right);
-            }
+        }
+
+        // move to left of tree
+        if (data < node.data) {
+            node.left = insert(data, node.left);
+        }
+        // move to right of tree
+        else if (data > node.data){
+            node.right = insert(data, node.right);
+        }
+        // prevent duplicates
+        else {
+            return node;
+        }
+
+        // get heights of child nodes
+        int leftHeight = (node.left != null) ? node.left.height : 0;
+        int rightHeight = (node.right != null) ? node.right.height : 0;
+
+        // update height of node to the greatest of its child heights
+        node.height = 1 + Math.max(leftHeight, rightHeight);
+
+        // calculate balance factor of node
+        int balanceFactor = leftHeight - rightHeight;
+
+        // left is bigger and new node is less than left
+        if (balanceFactor > 1 && data < node.left.data) {
+            //
+            return rotateRight(node);
+        }
+        // right is bigger and new node is greater than right
+        if (balanceFactor < -1 && data > node.right.data) {
+            //
+            return rotateLeft(node);
+        }
+        // left is bigger and new node is greater than left
+        if (balanceFactor > 1 && data > node.left.data) {
+            // rotate left first to get to simple case
+            node.left = rotateLeft(node.left);
+            // then do simple rotation
+            return rotateRight(node);
+        }
+        // right is bigger and new node is less than right
+        if (balanceFactor < -1 && data < node.right.data) {
+            // rotate right first to get to simple case
+            node.right = rotateRight(node.right);
+            // then do simple rotation
+            return rotateLeft(node);
         }
 
         return node;
+    }
+
+    /** HELPER METHOD
+     * Rotates the node's left to the node position
+     * @param
+     * @return
+     */
+    private Node rotateRight(Node y) {
+        Node x = y.left; // node's left child
+        Node T2 = x.right; // node's left child's right child
+
+        // rotate
+        x.right = y; // node's left child's right child becomes node (T2 becomes node)
+        y.left = T2; // node's left child becomes node's left child's right child (node.left becomes T2)
+
+        // update heights
+        int leftHeight = (y.left != null) ? y.left.height : 0;
+        int rightHeight = (y.right != null) ? y.right.height : 0;
+        y.height = 1 + Math.max(leftHeight, rightHeight);
+
+        int childLeftHeight = (x.left != null) ? x.left.height : 0;
+        int childRightHeight = (x.right != null) ? x.right.height : 0;
+        x.height = 1 + Math.max(childLeftHeight, childRightHeight);
+
+        // node's left becomes right
+        return x;
+    }
+
+    /** HELPER METHOD
+     * Rotates the node's right to the node position
+     * @param
+     * @return
+     */
+    private Node rotateLeft(Node x) {
+        Node y = x.right;
+        Node T2 = y.left;
+
+        y.left = x;
+        x.right = T2;
+
+        int leftHeight = (x.left != null) ? x.left.height : 0;
+        int rightHeight = (x.right != null) ? x.right.height : 0;
+        x.height = 1 + Math.max(leftHeight, rightHeight);
+
+        int childLeftHeight = (y.left != null) ? y.left.height : 0;
+        int childRightHeight = (y.right != null) ? y.right.height : 0;
+        y.height = 1 + Math.max(childLeftHeight, childRightHeight);
+
+        return y;
     }
 
     /**
@@ -226,9 +315,11 @@ public class BinarySearchTree {
         Node left;
         Node right;
         int data;
+        int height;
 
         Node (int data) {
             this.data = data;
+            this.height = 1;
         }
     }
 }
