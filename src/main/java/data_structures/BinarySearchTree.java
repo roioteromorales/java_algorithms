@@ -13,7 +13,6 @@ public class BinarySearchTree {
         else {
             for (int i = 0; i < data.length; i++) {
                 insert(data[i]);
-                System.out.println("inserted "  + data[i]);
             }
         }
     }
@@ -41,6 +40,10 @@ public class BinarySearchTree {
      * @return new node recursively
      */
     private Node insert(int data, Node node) {
+        /*
+        INSERT NODE
+         */
+
         // create new root node
         if (node == null) {
             node = new Node(data);
@@ -60,9 +63,13 @@ public class BinarySearchTree {
             return node;
         }
 
+        /*
+        REBALANCE TREE
+         */
+
         // get heights of child nodes
-        int leftHeight = (node.left != null) ? node.left.height : 0;
-        int rightHeight = (node.right != null) ? node.right.height : 0;
+        int leftHeight = height(node.left);
+        int rightHeight = height(node.right);
 
         // update height of node to the greatest of its child heights
         node.height = 1 + Math.max(leftHeight, rightHeight);
@@ -98,55 +105,6 @@ public class BinarySearchTree {
         return node;
     }
 
-    /** HELPER METHOD
-     * Rotates the node's left to the node position
-     * @param
-     * @return
-     */
-    private Node rotateRight(Node y) {
-        Node x = y.left; // node's left child
-        Node T2 = x.right; // node's left child's right child
-
-        // rotate
-        x.right = y; // node's left child's right child becomes node (T2 becomes node)
-        y.left = T2; // node's left child becomes node's left child's right child (node.left becomes T2)
-
-        // update heights
-        int leftHeight = (y.left != null) ? y.left.height : 0;
-        int rightHeight = (y.right != null) ? y.right.height : 0;
-        y.height = 1 + Math.max(leftHeight, rightHeight);
-
-        int childLeftHeight = (x.left != null) ? x.left.height : 0;
-        int childRightHeight = (x.right != null) ? x.right.height : 0;
-        x.height = 1 + Math.max(childLeftHeight, childRightHeight);
-
-        // node's left becomes right
-        return x;
-    }
-
-    /** HELPER METHOD
-     * Rotates the node's right to the node position
-     * @param
-     * @return
-     */
-    private Node rotateLeft(Node x) {
-        Node y = x.right;
-        Node T2 = y.left;
-
-        y.left = x;
-        x.right = T2;
-
-        int leftHeight = (x.left != null) ? x.left.height : 0;
-        int rightHeight = (x.right != null) ? x.right.height : 0;
-        x.height = 1 + Math.max(leftHeight, rightHeight);
-
-        int childLeftHeight = (y.left != null) ? y.left.height : 0;
-        int childRightHeight = (y.right != null) ? y.right.height : 0;
-        y.height = 1 + Math.max(childLeftHeight, childRightHeight);
-
-        return y;
-    }
-
     /**
      * Removes a value from the tree
      * @param target value to be removed
@@ -158,7 +116,8 @@ public class BinarySearchTree {
         }
 
         // start the recursive helper method
-        remove(target, root);
+        System.out.println("removing " + target);
+        root = remove(target, root);
     }
 
     /** HELPER METHOD
@@ -168,9 +127,20 @@ public class BinarySearchTree {
      * @return node for recursive calls
      */
     private Node remove(int target, Node node) {
+        /*
+        REMOVE NODE
+         */
 
+        // move recursively left
+        if (target < node.data) {
+            node.left = remove(target, node.left);
+        }
+        // move recursively right
+        else if (target > node.data){
+            node.right = remove(target, node.right);
+        }
         // currently at the target Node
-        if (node.data == target) {
+        else {
 
             // currently at a leaf Node
             if (node.left == null && node.right == null) {
@@ -210,21 +180,108 @@ public class BinarySearchTree {
 
                 // remove old smallest node
                 node.right = remove(target, node.right);
-
-                return node;
             }
+
         }
 
-        // recursive calls
-        if (target < node.data) {
-            // move left
-            node.left = remove(target, node.left);
-        } else {
-            // move right
-            node.right = remove(target, node.right);
+        /*
+        REBALANCE TREE
+         */
+
+        // update height
+        int leftHeight = height(node.left);
+        int rightHeight = height(node.right);
+        node.height = 1 + Math.max(leftHeight, rightHeight);
+
+        // calculate balance factor of node
+        int balanceFactor = leftHeight - rightHeight;
+
+        // calculate left balance
+        leftHeight = 0;
+        rightHeight = 0;
+        if (node.left != null) {
+            leftHeight = height(node.left.left);
+            rightHeight = height(node.left.right);
+        }
+        int balanceLeft = leftHeight - rightHeight;
+
+        // calculate right balance
+        leftHeight = 0;
+        rightHeight = 0;
+        if (node.right != null) {
+            leftHeight = height(node.right.left);
+            rightHeight = height(node.right.right);
+        }
+        int balanceRight = leftHeight - rightHeight;
+
+        // rebalance
+        if (balanceFactor > 1 && balanceLeft >= 0) {
+            return rotateRight(node);
+        }
+        if (balanceFactor > 1 && balanceLeft < 0) {
+            node.left = rotateLeft(node.left);
+            return rotateRight(node);
+        }
+        if (balanceFactor < -1 && balanceRight <= 0) {
+            node =  rotateLeft(node);
+            return node;
+        }
+        if (balanceFactor < -1 && balanceRight > 0) {
+            node.right = rotateRight(node.right);
+            return rotateLeft(node);
         }
 
         return node;
+    }
+
+    /** HELPER METHOD
+     * Rotates the node's left to the node position
+     * @param
+     * @return
+     */
+    private Node rotateRight(Node y) {
+        Node child = y.left; // node's left child
+        Node grandChild = child.right; // node's left child's right child
+
+        // rotate
+        child.right = y;
+        y.left = grandChild;
+
+        // update heights
+        int leftHeight = height(y.left);
+        int rightHeight = height(y.right);
+        y.height = 1 + Math.max(leftHeight, rightHeight);
+
+        leftHeight = height(child.left);
+        rightHeight = height(child.right);
+        child.height = 1 + Math.max(leftHeight, rightHeight);
+
+        return child;
+    }
+
+    /** HELPER METHOD
+     * Rotates the node's right to the node position
+     * @param
+     * @return
+     */
+    private Node rotateLeft(Node x) {
+        Node child = x.right;
+        Node grandChild = child.left;
+
+        // rotate
+        child.left = x;
+        x.right = grandChild;
+
+        // update heights
+        int leftHeight = height(x.left);
+        int rightHeight = height(x.right);
+        x.height = 1 + Math.max(leftHeight, rightHeight);
+
+        leftHeight = height(child.left);
+        rightHeight = height(child.right);
+        child.height = 1 + Math.max(leftHeight, rightHeight);
+
+        return child;
     }
 
     /**
@@ -308,6 +365,26 @@ public class BinarySearchTree {
 
     }
 
+    /** HELPER METHOD
+     * Gets the height of the given Node
+     * @param node
+     * @return
+     */
+    private int height(Node node) {
+        if (node == null) {
+            return 0;
+        }
+        return node.height;
+    }
+
+    public boolean isBalanced() {
+        // get balance factor
+        int balanceFactor = height(root.left) - height(root.right);
+
+        // determine with the sides are within 1 level of each other
+        return Math.abs(balanceFactor) <= 1;
+    }
+
     /**
      * A Node of a Binary Tree
      */
@@ -321,6 +398,7 @@ public class BinarySearchTree {
             this.data = data;
             this.height = 1;
         }
+
     }
 }
 
