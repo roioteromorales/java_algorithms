@@ -239,18 +239,18 @@ public class BinarySearchTree {
      * @param
      * @return
      */
-    private Node rotateRight(Node y) {
-        Node child = y.left; // node's left child
+    private Node rotateRight(Node node) {
+        Node child = node.left; // node's left child
         Node grandChild = child.right; // node's left child's right child
 
         // rotate
-        child.right = y;
-        y.left = grandChild;
+        child.right = node;
+        node.left = grandChild;
 
         // update heights
-        int leftHeight = height(y.left);
-        int rightHeight = height(y.right);
-        y.height = 1 + Math.max(leftHeight, rightHeight);
+        int leftHeight = height(node.left);
+        int rightHeight = height(node.right);
+        node.height = 1 + Math.max(leftHeight, rightHeight);
 
         leftHeight = height(child.left);
         rightHeight = height(child.right);
@@ -264,18 +264,18 @@ public class BinarySearchTree {
      * @param
      * @return
      */
-    private Node rotateLeft(Node x) {
-        Node child = x.right;
+    private Node rotateLeft(Node node) {
+        Node child = node.right;
         Node grandChild = child.left;
 
         // rotate
-        child.left = x;
-        x.right = grandChild;
+        child.left = node;
+        node.right = grandChild;
 
         // update heights
-        int leftHeight = height(x.left);
-        int rightHeight = height(x.right);
-        x.height = 1 + Math.max(leftHeight, rightHeight);
+        int leftHeight = height(node.left);
+        int rightHeight = height(node.right);
+        node.height = 1 + Math.max(leftHeight, rightHeight);
 
         leftHeight = height(child.left);
         rightHeight = height(child.right);
@@ -377,6 +377,10 @@ public class BinarySearchTree {
         return node.height;
     }
 
+    /**
+     * Determines whether the tree has a logarithmic height
+     * @return true if balanced, false if not balanced (the left and right side differ by more than 1)
+     */
     public boolean isBalanced() {
         // get balance factor
         int balanceFactor = height(root.left) - height(root.right);
