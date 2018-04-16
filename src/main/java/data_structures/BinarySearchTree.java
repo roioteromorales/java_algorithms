@@ -5,6 +5,7 @@ public class BinarySearchTree {
     int size;
 
     BinarySearchTree(int ... data) {
+
         // initialize empty tree
         if (data.length < 1) {
             root = null;
@@ -22,6 +23,7 @@ public class BinarySearchTree {
      * @param data to be added
      */
     public void insert(int data) {
+
         // if the tree is empty
         if (root == null) {
             root = new Node(data);
@@ -40,9 +42,6 @@ public class BinarySearchTree {
      * @return new node recursively
      */
     private Node insert(int data, Node node) {
-        /*
-        INSERT NODE
-         */
 
         // create new root node
         if (node == null) {
@@ -63,9 +62,16 @@ public class BinarySearchTree {
             return node;
         }
 
-        /*
-        REBALANCE TREE
-         */
+        return rebalanceInsert(node, data);
+    }
+
+    /** HELPER METHOD
+     * Rebalances tree after insertion
+     * @param node root
+     * @param data data added
+     * @return root of balanced tree
+     */
+    private Node rebalanceInsert(Node node, int data) {
 
         // get heights of child nodes
         int leftHeight = height(node.left);
@@ -110,6 +116,7 @@ public class BinarySearchTree {
      * @param target value to be removed
      */
     public void remove(int target) {
+
         // make sure node exists
         if (!search(target)) {
             return;
@@ -127,9 +134,6 @@ public class BinarySearchTree {
      * @return node for recursive calls
      */
     private Node remove(int target, Node node) {
-        /*
-        REMOVE NODE
-         */
 
         // move recursively left
         if (target < node.data) {
@@ -184,9 +188,15 @@ public class BinarySearchTree {
 
         }
 
-        /*
-        REBALANCE TREE
-         */
+        return rebalanceRemove(node);
+    }
+
+    /** HELPER METHOD
+     * Rebalances tree after removal
+     * @param node root
+     * @return root of balanced tree
+     */
+    private Node rebalanceRemove(Node node) {
 
         // update height
         int leftHeight = height(node.left);
