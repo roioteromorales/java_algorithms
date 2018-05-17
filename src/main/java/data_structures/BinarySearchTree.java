@@ -13,6 +13,10 @@ public class BinarySearchTree {
 
         bst.printPreorderIterative(bst.root);
 
+        System.out.println(bst.lowestCommonAncestor(10, 15).data);
+
+        System.out.println(bst.lowestCommonAncestor(3, 15).data);
+
     }
     BinarySearchTree(int ... data) {
 
@@ -365,7 +369,7 @@ public class BinarySearchTree {
     }
 
     /**
-     * Prints the data of each Node using preorder traversal
+     * Prints the data of each Node using preorder traversal recursively
      * @param node the starting Node
      */
     public void printPreorderRecursive(Node node) {
@@ -377,6 +381,10 @@ public class BinarySearchTree {
         printPreorderRecursive(node.right);
     }
 
+    /**
+     * Prints the data of each Node using preorder traversal iteratively
+     * @param node the starting Node
+     */
     public void printPreorderIterative(Node node) {
         Stack<Node> stack = new Stack<>();
         stack.push(node);
@@ -390,6 +398,34 @@ public class BinarySearchTree {
                 stack.push(n.left);
             }
         }
+    }
+
+    /**
+     * Determines the lowest common ancestor between two values
+     * @param value1 the data of a Node
+     * @param value2 the data of a Node
+     * @return the lowest common ancestor of the given data
+     */
+    public Node lowestCommonAncestor (int value1, int value2) {
+        Node n = root;
+
+        while (n != null) {
+            // move right
+            if (n.data < value1 && n.data < value2) {
+                n = n.right;
+            }
+            // move left
+            else if (n.data > value1 && n.data > value2) {
+                n = n.left;
+            }
+            // target found
+            else {
+                return n;
+            }
+        }
+
+        // no common ancestor
+        return null;
     }
 
     /**
