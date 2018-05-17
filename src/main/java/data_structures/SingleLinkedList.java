@@ -172,7 +172,7 @@ public class SingleLinkedList<T> {
     }
 
     public boolean isEmpty() {
-        return isEmpty();
+        return start == null;
     }
 
     /**

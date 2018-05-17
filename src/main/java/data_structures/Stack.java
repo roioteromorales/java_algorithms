@@ -31,4 +31,12 @@ public class Stack<V> {
             return null;
         }
     }
+
+    /**
+     * Determines if the stack is empty
+     * @return true if empty, false if not empty
+     */
+    public boolean empty() {
+        return list.isEmpty();
+    }
 }
