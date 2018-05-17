@@ -4,6 +4,16 @@ public class BinarySearchTree {
     Node root;
     int size;
 
+    public static void main(String[] args) {
+        BinarySearchTree bst = new BinarySearchTree(5, 3, 7, 10, 15);
+
+        bst.printPreorderRecursive(bst.root);
+
+        System.out.println();
+
+        bst.printPreorderIterative(bst.root);
+
+    }
     BinarySearchTree(int ... data) {
 
         // initialize empty tree
@@ -330,51 +340,6 @@ public class BinarySearchTree {
         return false;
     }
 
-    /**
-     * Prints the tree
-     */
-    void print() {
-
-        int level = 0;
-
-        if (root == null) {
-            System.out.println("The tree is empty");
-        } else {
-            // print
-            System.out.print(root.data);
-
-            // move down tree
-            if (root.left != null) { print(root.left, level + 1); }
-            if (root.right != null) { print(root.right, level + 1); }
-            System.out.println();
-        }
-    }
-
-    /** HELPER METHOD
-     * Recursively prints the tree
-     * @param node current node (recursion)
-     * @param level current level (recursion)
-     */
-    void print(Node node, int level) {
-        // print
-        System.out.println();
-
-        for (int i = 0; i < level - 1; i++) {
-            System.out.print("     ");
-        }
-
-        System.out.print("  --> " + node.data);
-
-        for (int i = 0; i < level; i++) {
-            System.out.print("    ");
-        }
-
-        // move down tree
-        if (node.left != null) { print(node.left, level + 1); }
-        if (node.right != null) { print(node.right, level + 1); }
-
-    }
-
     /** HELPER METHOD
      * Gets the height of the given Node
      * @param node
@@ -397,6 +362,34 @@ public class BinarySearchTree {
 
         // determine with the sides are within 1 level of each other
         return Math.abs(balanceFactor) <= 1;
+    }
+
+    /**
+     * Prints the data of each Node using preorder traversal
+     * @param node the starting Node
+     */
+    public void printPreorderRecursive(Node node) {
+        if (node == null) return;
+
+        System.out.print(node.data + " ");
+
+        printPreorderRecursive(node.left);
+        printPreorderRecursive(node.right);
+    }
+
+    public void printPreorderIterative(Node node) {
+        Stack<Node> stack = new Stack<>();
+        stack.push(node);
+
+        while (!stack.empty()) {
+            Node n = stack.pop();
+
+            if (n != null) {
+                System.out.print(n.data + " ");
+                stack.push(n.right);
+                stack.push(n.left);
+            }
+        }
     }
 
     /**
