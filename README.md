@@ -40,7 +40,7 @@ ensure the credit card number is valid.
 
 # Data Structures
 
-**BinarySearchTree.java** is an integer implementation of a sorted [Binary Search Tree (BST)](https://en.wikipedia.org/wiki/Binary_search_tree).
+**BinarySearchTree.java** is an integer implementation of a sorted, self-balancing [Binary Search Tree (BST)](https://en.wikipedia.org/wiki/Binary_search_tree).
 A binary tree starts from a root node, and has references to left and right child nodes. A BST is a binary tree that
 requires the right child node to be greater than the left. You can test by running *BinaryTreeTester.java*.
 

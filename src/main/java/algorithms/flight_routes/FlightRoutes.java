@@ -1,7 +1,7 @@
 package algorithms.flight_routes;
 
 import data_structures.HashMap;
-import data_structures.lists.SingleLinkedList;
+import data_structures.SingleLinkedList;
 import java.io.BufferedReader;
 import java.io.FileReader;
 

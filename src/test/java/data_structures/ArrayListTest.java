@@ -1,6 +1,5 @@
 package data_structures;
 
-import data_structures.lists.ArrayList;
 import org.junit.Test;
 
 import static junit.framework.Assert.assertEquals;

@@ -1,6 +1,6 @@
 package algorithms;
 
-import data_structures.lists.Queue;
+import data_structures.Queue;
 import java.io.File;
 
 public class FileCrawler {
